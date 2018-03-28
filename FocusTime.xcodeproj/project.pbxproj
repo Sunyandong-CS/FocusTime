@@ -1,0 +1,763 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CF951775206B360100CE221D /* CircleAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF951774206B360100CE221D /* CircleAnimation.m */; };
+		CFA19A9D2066974B005883F5 /* SYDSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA19A9C2066974B005883F5 /* SYDSettingViewController.m */; };
+		CFA19A9F20669A03005883F5 /* SYDSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFA19A9E20669A03005883F5 /* SYDSettingViewController.storyboard */; };
+		CFB3B51D205B9B2D00372E78 /* SYDCircleView.h in Sources */ = {isa = PBXBuildFile; fileRef = CFEB05BA205A52650078A2E9 /* SYDCircleView.h */; };
+		CFB3B520205B9D9700372E78 /* SYDTimeCountDownView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB3B51F205B9D9700372E78 /* SYDTimeCountDownView.m */; };
+		CFB3B522205BA19F00372E78 /* DefaultThin.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFB3B521205B9E2900372E78 /* DefaultThin.otf */; };
+		CFCBE63C2059624A00714D2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFCBE63A2059624A00714D2B /* Main.storyboard */; };
+		CFCBE63E2059624A00714D2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFCBE63D2059624A00714D2B /* Assets.xcassets */; };
+		CFCBE6412059624A00714D2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFCBE63F2059624A00714D2B /* LaunchScreen.storyboard */; };
+		CFCBE64E2059624A00714D2B /* FocusTimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCBE64D2059624A00714D2B /* FocusTimeTests.m */; };
+		CFCBE6592059624A00714D2B /* FocusTimeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCBE6582059624A00714D2B /* FocusTimeUITests.m */; };
+		CFCBE683205963D800714D2B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCBE67E205963D800714D2B /* AppDelegate.m */; };
+		CFCBE687205965D600714D2B /* SYDMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCBE686205965D600714D2B /* SYDMainController.m */; };
+		CFCBE68B205966BC00714D2B /* SYDConst.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCBE68A205966BC00714D2B /* SYDConst.m */; };
+		CFCBE6912059673F00714D2B /* UIView+SYDFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCBE6902059673F00714D2B /* UIView+SYDFrame.m */; };
+		CFCBE694205969C800714D2B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFCBE692205969C800714D2B /* Info.plist */; };
+		CFCBE695205969C800714D2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCBE693205969C800714D2B /* main.m */; };
+		CFDEBF862063A1C300624CD5 /* CountDownlabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDEBF852063A1C300624CD5 /* CountDownlabel.m */; };
+		CFEB05B9205A18CE0078A2E9 /* SYDButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEB05B8205A18CE0078A2E9 /* SYDButton.m */; };
+		CFEB05BC205A52650078A2E9 /* SYDCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEB05BB205A52650078A2E9 /* SYDCircleView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CFCBE64A2059624A00714D2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFCBE6292059624A00714D2B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFCBE6302059624A00714D2B;
+			remoteInfo = FocusTime;
+		};
+		CFCBE6552059624A00714D2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFCBE6292059624A00714D2B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFCBE6302059624A00714D2B;
+			remoteInfo = FocusTime;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CF951773206B360100CE221D /* CircleAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleAnimation.h; sourceTree = "<group>"; };
+		CF951774206B360100CE221D /* CircleAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleAnimation.m; sourceTree = "<group>"; };
+		CFA19A9B2066974B005883F5 /* SYDSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDSettingViewController.h; sourceTree = "<group>"; };
+		CFA19A9C2066974B005883F5 /* SYDSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDSettingViewController.m; sourceTree = "<group>"; };
+		CFA19A9E20669A03005883F5 /* SYDSettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SYDSettingViewController.storyboard; sourceTree = "<group>"; };
+		CFB3B51E205B9D9700372E78 /* SYDTimeCountDownView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDTimeCountDownView.h; sourceTree = "<group>"; };
+		CFB3B51F205B9D9700372E78 /* SYDTimeCountDownView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDTimeCountDownView.m; sourceTree = "<group>"; };
+		CFB3B521205B9E2900372E78 /* DefaultThin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DefaultThin.otf; sourceTree = "<group>"; };
+		CFCBE6312059624A00714D2B /* FocusTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFCBE63B2059624A00714D2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CFCBE63D2059624A00714D2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CFCBE6402059624A00714D2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CFCBE6492059624A00714D2B /* FocusTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocusTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFCBE64D2059624A00714D2B /* FocusTimeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FocusTimeTests.m; sourceTree = "<group>"; };
+		CFCBE64F2059624A00714D2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFCBE6542059624A00714D2B /* FocusTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocusTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFCBE6582059624A00714D2B /* FocusTimeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FocusTimeUITests.m; sourceTree = "<group>"; };
+		CFCBE65A2059624A00714D2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFCBE669205963D800714D2B /* SingleTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleTools.h; sourceTree = "<group>"; };
+		CFCBE67C205963D800714D2B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CFCBE67E205963D800714D2B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CFCBE685205965D600714D2B /* SYDMainController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDMainController.h; sourceTree = "<group>"; };
+		CFCBE686205965D600714D2B /* SYDMainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDMainController.m; sourceTree = "<group>"; };
+		CFCBE689205966BC00714D2B /* SYDConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDConst.h; sourceTree = "<group>"; };
+		CFCBE68A205966BC00714D2B /* SYDConst.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDConst.m; sourceTree = "<group>"; };
+		CFCBE68F2059673F00714D2B /* UIView+SYDFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+SYDFrame.h"; sourceTree = "<group>"; };
+		CFCBE6902059673F00714D2B /* UIView+SYDFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+SYDFrame.m"; sourceTree = "<group>"; };
+		CFCBE692205969C800714D2B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FocusTime/Info.plist; sourceTree = SOURCE_ROOT; };
+		CFCBE693205969C800714D2B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FocusTime/main.m; sourceTree = SOURCE_ROOT; };
+		CFDEBF842063A1C300624CD5 /* CountDownlabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountDownlabel.h; sourceTree = "<group>"; };
+		CFDEBF852063A1C300624CD5 /* CountDownlabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountDownlabel.m; sourceTree = "<group>"; };
+		CFEB05B7205A18CE0078A2E9 /* SYDButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDButton.h; sourceTree = "<group>"; };
+		CFEB05B8205A18CE0078A2E9 /* SYDButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDButton.m; sourceTree = "<group>"; };
+		CFEB05BA205A52650078A2E9 /* SYDCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDCircleView.h; sourceTree = "<group>"; };
+		CFEB05BB205A52650078A2E9 /* SYDCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDCircleView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CFCBE62E2059624A00714D2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFCBE6462059624A00714D2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFCBE6512059624A00714D2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CFCBE6282059624A00714D2B = {
+			isa = PBXGroup;
+			children = (
+				CFCBE6332059624A00714D2B /* FocusTime */,
+				CFCBE64C2059624A00714D2B /* FocusTimeTests */,
+				CFCBE6572059624A00714D2B /* FocusTimeUITests */,
+				CFCBE6322059624A00714D2B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CFCBE6322059624A00714D2B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE6312059624A00714D2B /* FocusTime.app */,
+				CFCBE6492059624A00714D2B /* FocusTimeTests.xctest */,
+				CFCBE6542059624A00714D2B /* FocusTimeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CFCBE6332059624A00714D2B /* FocusTime */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE666205963D800714D2B /* Classes */,
+				CFCBE67B205963D800714D2B /* SupportingFiles */,
+				CFCBE692205969C800714D2B /* Info.plist */,
+				CFCBE693205969C800714D2B /* main.m */,
+			);
+			path = FocusTime;
+			sourceTree = "<group>";
+		};
+		CFCBE64C2059624A00714D2B /* FocusTimeTests */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE64D2059624A00714D2B /* FocusTimeTests.m */,
+				CFCBE64F2059624A00714D2B /* Info.plist */,
+			);
+			path = FocusTimeTests;
+			sourceTree = "<group>";
+		};
+		CFCBE6572059624A00714D2B /* FocusTimeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE6582059624A00714D2B /* FocusTimeUITests.m */,
+				CFCBE65A2059624A00714D2B /* Info.plist */,
+			);
+			path = FocusTimeUITests;
+			sourceTree = "<group>";
+		};
+		CFCBE666205963D800714D2B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE667205963D800714D2B /* Other */,
+				CFCBE66F205963D800714D2B /* Me */,
+				CFCBE673205963D800714D2B /* Setting */,
+				CFCBE677205963D800714D2B /* Main */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		CFCBE667205963D800714D2B /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE688205966A400714D2B /* Const */,
+				CFCBE668205963D800714D2B /* Tools */,
+				CFCBE66A205963D800714D2B /* Category */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		CFCBE668205963D800714D2B /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE669205963D800714D2B /* SingleTools.h */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		CFCBE66A205963D800714D2B /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE68F2059673F00714D2B /* UIView+SYDFrame.h */,
+				CFCBE6902059673F00714D2B /* UIView+SYDFrame.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		CFCBE66F205963D800714D2B /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE670205963D800714D2B /* Controller */,
+				CFCBE671205963D800714D2B /* Model */,
+				CFCBE672205963D800714D2B /* View */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		CFCBE670205963D800714D2B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CFCBE671205963D800714D2B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFCBE672205963D800714D2B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CFCBE673205963D800714D2B /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE674205963D800714D2B /* Controller */,
+				CFCBE675205963D800714D2B /* Model */,
+				CFCBE676205963D800714D2B /* View */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		CFCBE674205963D800714D2B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CFA19A9B2066974B005883F5 /* SYDSettingViewController.h */,
+				CFA19A9C2066974B005883F5 /* SYDSettingViewController.m */,
+				CFA19A9E20669A03005883F5 /* SYDSettingViewController.storyboard */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CFCBE675205963D800714D2B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFCBE676205963D800714D2B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CFCBE677205963D800714D2B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE678205963D800714D2B /* Controller */,
+				CFCBE679205963D800714D2B /* Model */,
+				CFCBE67A205963D800714D2B /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		CFCBE678205963D800714D2B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE685205965D600714D2B /* SYDMainController.h */,
+				CFCBE686205965D600714D2B /* SYDMainController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CFCBE679205963D800714D2B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFCBE67A205963D800714D2B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CFEB05B7205A18CE0078A2E9 /* SYDButton.h */,
+				CFEB05B8205A18CE0078A2E9 /* SYDButton.m */,
+				CFEB05BA205A52650078A2E9 /* SYDCircleView.h */,
+				CFEB05BB205A52650078A2E9 /* SYDCircleView.m */,
+				CFB3B51E205B9D9700372E78 /* SYDTimeCountDownView.h */,
+				CFB3B51F205B9D9700372E78 /* SYDTimeCountDownView.m */,
+				CFDEBF842063A1C300624CD5 /* CountDownlabel.h */,
+				CFDEBF852063A1C300624CD5 /* CountDownlabel.m */,
+				CF951773206B360100CE221D /* CircleAnimation.h */,
+				CF951774206B360100CE221D /* CircleAnimation.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CFCBE67B205963D800714D2B /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				CFB3B521205B9E2900372E78 /* DefaultThin.otf */,
+				CFCBE63A2059624A00714D2B /* Main.storyboard */,
+				CFCBE63D2059624A00714D2B /* Assets.xcassets */,
+				CFCBE63F2059624A00714D2B /* LaunchScreen.storyboard */,
+				CFCBE67C205963D800714D2B /* AppDelegate.h */,
+				CFCBE67E205963D800714D2B /* AppDelegate.m */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		CFCBE688205966A400714D2B /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				CFCBE689205966BC00714D2B /* SYDConst.h */,
+				CFCBE68A205966BC00714D2B /* SYDConst.m */,
+			);
+			path = Const;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CFCBE6302059624A00714D2B /* FocusTime */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFCBE65D2059624A00714D2B /* Build configuration list for PBXNativeTarget "FocusTime" */;
+			buildPhases = (
+				CFCBE62D2059624A00714D2B /* Sources */,
+				CFCBE62E2059624A00714D2B /* Frameworks */,
+				CFCBE62F2059624A00714D2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FocusTime;
+			productName = FocusTime;
+			productReference = CFCBE6312059624A00714D2B /* FocusTime.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CFCBE6482059624A00714D2B /* FocusTimeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFCBE6602059624A00714D2B /* Build configuration list for PBXNativeTarget "FocusTimeTests" */;
+			buildPhases = (
+				CFCBE6452059624A00714D2B /* Sources */,
+				CFCBE6462059624A00714D2B /* Frameworks */,
+				CFCBE6472059624A00714D2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CFCBE64B2059624A00714D2B /* PBXTargetDependency */,
+			);
+			name = FocusTimeTests;
+			productName = FocusTimeTests;
+			productReference = CFCBE6492059624A00714D2B /* FocusTimeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CFCBE6532059624A00714D2B /* FocusTimeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFCBE6632059624A00714D2B /* Build configuration list for PBXNativeTarget "FocusTimeUITests" */;
+			buildPhases = (
+				CFCBE6502059624A00714D2B /* Sources */,
+				CFCBE6512059624A00714D2B /* Frameworks */,
+				CFCBE6522059624A00714D2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CFCBE6562059624A00714D2B /* PBXTargetDependency */,
+			);
+			name = FocusTimeUITests;
+			productName = FocusTimeUITests;
+			productReference = CFCBE6542059624A00714D2B /* FocusTimeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CFCBE6292059624A00714D2B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = com.xidian.edu.cn;
+				TargetAttributes = {
+					CFCBE6302059624A00714D2B = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					CFCBE6482059624A00714D2B = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CFCBE6302059624A00714D2B;
+					};
+					CFCBE6532059624A00714D2B = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CFCBE6302059624A00714D2B;
+					};
+				};
+			};
+			buildConfigurationList = CFCBE62C2059624A00714D2B /* Build configuration list for PBXProject "FocusTime" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CFCBE6282059624A00714D2B;
+			productRefGroup = CFCBE6322059624A00714D2B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CFCBE6302059624A00714D2B /* FocusTime */,
+				CFCBE6482059624A00714D2B /* FocusTimeTests */,
+				CFCBE6532059624A00714D2B /* FocusTimeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CFCBE62F2059624A00714D2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFB3B522205BA19F00372E78 /* DefaultThin.otf in Resources */,
+				CFCBE694205969C800714D2B /* Info.plist in Resources */,
+				CFCBE6412059624A00714D2B /* LaunchScreen.storyboard in Resources */,
+				CFCBE63E2059624A00714D2B /* Assets.xcassets in Resources */,
+				CFCBE63C2059624A00714D2B /* Main.storyboard in Resources */,
+				CFA19A9F20669A03005883F5 /* SYDSettingViewController.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFCBE6472059624A00714D2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFCBE6522059624A00714D2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CFCBE62D2059624A00714D2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFB3B51D205B9B2D00372E78 /* SYDCircleView.h in Sources */,
+				CFCBE695205969C800714D2B /* main.m in Sources */,
+				CF951775206B360100CE221D /* CircleAnimation.m in Sources */,
+				CFCBE683205963D800714D2B /* AppDelegate.m in Sources */,
+				CFEB05B9205A18CE0078A2E9 /* SYDButton.m in Sources */,
+				CFA19A9D2066974B005883F5 /* SYDSettingViewController.m in Sources */,
+				CFDEBF862063A1C300624CD5 /* CountDownlabel.m in Sources */,
+				CFB3B520205B9D9700372E78 /* SYDTimeCountDownView.m in Sources */,
+				CFCBE6912059673F00714D2B /* UIView+SYDFrame.m in Sources */,
+				CFCBE687205965D600714D2B /* SYDMainController.m in Sources */,
+				CFCBE68B205966BC00714D2B /* SYDConst.m in Sources */,
+				CFEB05BC205A52650078A2E9 /* SYDCircleView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFCBE6452059624A00714D2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFCBE64E2059624A00714D2B /* FocusTimeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFCBE6502059624A00714D2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFCBE6592059624A00714D2B /* FocusTimeUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CFCBE64B2059624A00714D2B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFCBE6302059624A00714D2B /* FocusTime */;
+			targetProxy = CFCBE64A2059624A00714D2B /* PBXContainerItemProxy */;
+		};
+		CFCBE6562059624A00714D2B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFCBE6302059624A00714D2B /* FocusTime */;
+			targetProxy = CFCBE6552059624A00714D2B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CFCBE63A2059624A00714D2B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFCBE63B2059624A00714D2B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CFCBE63F2059624A00714D2B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFCBE6402059624A00714D2B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CFCBE65B2059624A00714D2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CFCBE65C2059624A00714D2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CFCBE65E2059624A00714D2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BBKVX2RMVD;
+				INFOPLIST_FILE = FocusTime/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xidian.FocusTime;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CFCBE65F2059624A00714D2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BBKVX2RMVD;
+				INFOPLIST_FILE = FocusTime/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xidian.FocusTime;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CFCBE6612059624A00714D2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BBKVX2RMVD;
+				INFOPLIST_FILE = FocusTimeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xidian.FocusTimeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FocusTime.app/FocusTime";
+			};
+			name = Debug;
+		};
+		CFCBE6622059624A00714D2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BBKVX2RMVD;
+				INFOPLIST_FILE = FocusTimeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xidian.FocusTimeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FocusTime.app/FocusTime";
+			};
+			name = Release;
+		};
+		CFCBE6642059624A00714D2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BBKVX2RMVD;
+				INFOPLIST_FILE = FocusTimeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xidian.FocusTimeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FocusTime;
+			};
+			name = Debug;
+		};
+		CFCBE6652059624A00714D2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BBKVX2RMVD;
+				INFOPLIST_FILE = FocusTimeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xidian.FocusTimeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FocusTime;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CFCBE62C2059624A00714D2B /* Build configuration list for PBXProject "FocusTime" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFCBE65B2059624A00714D2B /* Debug */,
+				CFCBE65C2059624A00714D2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFCBE65D2059624A00714D2B /* Build configuration list for PBXNativeTarget "FocusTime" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFCBE65E2059624A00714D2B /* Debug */,
+				CFCBE65F2059624A00714D2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFCBE6602059624A00714D2B /* Build configuration list for PBXNativeTarget "FocusTimeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFCBE6612059624A00714D2B /* Debug */,
+				CFCBE6622059624A00714D2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFCBE6632059624A00714D2B /* Build configuration list for PBXNativeTarget "FocusTimeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFCBE6642059624A00714D2B /* Debug */,
+				CFCBE6652059624A00714D2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CFCBE6292059624A00714D2B /* Project object */;
+}
