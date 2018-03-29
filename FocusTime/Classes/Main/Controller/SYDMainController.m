@@ -13,6 +13,8 @@
 #import "CountDownlabel.h"
 #import "SYDTimeCountDownView.h"
 #import "SYDSettingViewController.h"
+#import "SYDNotification.h"
+#import <UserNotifications/UserNotifications.h>
 
 #define margin 5
 #define btnH   32
@@ -37,6 +39,11 @@
 @property (nonatomic, weak) UIButton *exitBtn;
 /* 继续按钮 */
 @property (nonatomic, weak) UIButton *resumeBtn;
+/* 设置按钮 */
+@property (nonatomic, weak) UIButton *settingBtn;
+
+/* 个人中心按钮 */
+@property (nonatomic, weak) UIButton *meBtn;
 
 /* 圆形区域 */
 @property (nonatomic, weak) SYDCircleView *circleV;
@@ -56,12 +63,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     // 0.设置状态栏颜色
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    
     // 1.初始化统计时间
-    self.totalTime = 1500;
+    self.totalTime = 60;
     [self setUpMainView];
     [self setUpTimeView];
 }
@@ -84,12 +89,14 @@
     UIButton * settingBtn = [[UIButton alloc] initWithFrame:CGRectMake( margin , margin + startBtnH, btnW, btnH)];
     [settingBtn setImage:[UIImage imageNamed:@"设置"] forState:UIControlStateNormal];
     [settingBtn addTarget:self action:@selector(gotoSettingPage) forControlEvents:UIControlEventTouchUpInside];
+    self.settingBtn = settingBtn;
     [self.view addSubview:settingBtn];
     
     // 添加右上角个人中心按钮
     UIButton *meBtn = [[UIButton alloc] initWithFrame:CGRectMake(rBtnX - margin, margin + startBtnH, btnW, btnH)];
     [meBtn setBackgroundImage:[UIImage imageNamed:@"个人中心"] forState:UIControlStateNormal];
     [meBtn addTarget:self action:@selector(gotoUserDetailPage) forControlEvents:UIControlEventTouchUpInside];
+    self.meBtn = meBtn;
     [self.view addSubview: meBtn];
     
     // 开始按钮
@@ -179,7 +186,7 @@
     self.timer = timer;
     dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
     dispatch_source_set_event_handler(timer, ^{
-        if(self.totalTime <= 0) {
+        if(self.totalTime < 0) {
             dispatch_source_cancel(timer);
 #warning TODO 弹出提示，本地通知完成一个番茄事件
         } else {
@@ -232,7 +239,8 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SYDSettingViewController" bundle:nil];
     SYDSettingViewController *setVC = [storyboard instantiateInitialViewController];
-    [self.navigationController pushViewController:setVC animated:YES];
+//    [self pushViewController:setVC animated:YES];
+    [self presentViewController:setVC animated:YES completion:nil];
     
 }
 
@@ -245,6 +253,8 @@
  */
 - (void)startBtnClick {
     NSLog(@"点击了开始按钮");
+    
+    [self hideTopBtn];
     
     // 开始倒计时动画 3 。2 。1
     CountDownlabel *countdownlabel = [[CountDownlabel alloc] initWithFrame:CGRectMake(0, 300, 200, 60)];
@@ -276,6 +286,7 @@
     } completion:^(BOOL finished) {
         // 计时器开始计时
         [self addTimer];
+        [self postNotification];
         [self addCircleAnimation];
         
     }];
@@ -344,6 +355,8 @@
         [self refreshCountdownLabel];
         [self.cirAnimation removeFromSuperview];
         
+        [self showTopBtn];
+        
     }];
 }
 
@@ -367,5 +380,31 @@
         // 统计时间归位
         self.totalTime = 1500;
     }
+}
+
+#pragma mark - 通知
+- (void)postNotification {
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    content.title = @"专注时间";
+    content.body = @"已完成一个番茄时间";
+    UNNotificationSound *sound = [UNNotificationSound defaultSound];
+    content.sound = sound;
+    [SYDNotification postNotificationWithTimeInterval:self.totalTime content:content completeHandler:^(NSError * _Nullable error) {
+        
+        // 完成一个番茄钟的逻辑
+        NSLog(@"完成一个番茄钟");
+#warning TODO 保存到数据库展示图标
+    }];
+}
+
+#pragma mark - 顶部按钮显示控制
+- (void)showTopBtn {
+    self.settingBtn.hidden = NO;
+    self.meBtn.hidden = NO;
+}
+
+- (void)hideTopBtn {
+    self.settingBtn.hidden = YES;
+    self.meBtn.hidden = YES;
 }
 @end

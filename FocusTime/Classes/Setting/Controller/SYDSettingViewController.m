@@ -20,6 +20,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 1.初始化页面
+    [self initializeView];
+}
+
+#pragma mark - 初始化
+- (void)initializeView {
+    self.navigationItem.title = @"设置";
     
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF951775206B360100CE221D /* CircleAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF951774206B360100CE221D /* CircleAnimation.m */; };
+		CF95177A206BCA6E00CE221D /* SYDNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = CF951779206BCA6E00CE221D /* SYDNotification.m */; };
 		CFA19A9D2066974B005883F5 /* SYDSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA19A9C2066974B005883F5 /* SYDSettingViewController.m */; };
 		CFA19A9F20669A03005883F5 /* SYDSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFA19A9E20669A03005883F5 /* SYDSettingViewController.storyboard */; };
 		CFB3B51D205B9B2D00372E78 /* SYDCircleView.h in Sources */ = {isa = PBXBuildFile; fileRef = CFEB05BA205A52650078A2E9 /* SYDCircleView.h */; };
@@ -49,6 +50,8 @@
 /* Begin PBXFileReference section */
 		CF951773206B360100CE221D /* CircleAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleAnimation.h; sourceTree = "<group>"; };
 		CF951774206B360100CE221D /* CircleAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleAnimation.m; sourceTree = "<group>"; };
+		CF951778206BCA6E00CE221D /* SYDNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDNotification.h; sourceTree = "<group>"; };
+		CF951779206BCA6E00CE221D /* SYDNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDNotification.m; sourceTree = "<group>"; };
 		CFA19A9B2066974B005883F5 /* SYDSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDSettingViewController.h; sourceTree = "<group>"; };
 		CFA19A9C2066974B005883F5 /* SYDSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDSettingViewController.m; sourceTree = "<group>"; };
 		CFA19A9E20669A03005883F5 /* SYDSettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SYDSettingViewController.storyboard; sourceTree = "<group>"; };
@@ -109,6 +112,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF951776206BCA0500CE221D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CF951777206BCA3600CE221D /* View */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CF951777206BCA3600CE221D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CFCBE6282059624A00714D2B = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +179,7 @@
 		CFCBE666205963D800714D2B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CF951776206BCA0500CE221D /* Common */,
 				CFCBE667205963D800714D2B /* Other */,
 				CFCBE66F205963D800714D2B /* Me */,
 				CFCBE673205963D800714D2B /* Setting */,
@@ -183,6 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				CFCBE669205963D800714D2B /* SingleTools.h */,
+				CF951778206BCA6E00CE221D /* SYDNotification.h */,
+				CF951779206BCA6E00CE221D /* SYDNotification.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -465,6 +486,7 @@
 				CFB3B51D205B9B2D00372E78 /* SYDCircleView.h in Sources */,
 				CFCBE695205969C800714D2B /* main.m in Sources */,
 				CF951775206B360100CE221D /* CircleAnimation.m in Sources */,
+				CF95177A206BCA6E00CE221D /* SYDNotification.m in Sources */,
 				CFCBE683205963D800714D2B /* AppDelegate.m in Sources */,
 				CFEB05B9205A18CE0078A2E9 /* SYDButton.m in Sources */,
 				CFA19A9D2066974B005883F5 /* SYDSettingViewController.m in Sources */,
