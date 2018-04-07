@@ -10,6 +10,7 @@
 #import "SYDMainController.h"
 #import <UserNotifications/UserNotifications.h>
 
+extern CFAbsoluteTime StartTime;
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
 @end
@@ -49,6 +50,9 @@
         [application registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
     }
+    
+    double launchTime = CFAbsoluteTimeGetCurrent() - StartTime;
+    NSLog(@"%f",launchTime);
     return YES;
 }
 

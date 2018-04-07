@@ -16,15 +16,16 @@
 #import "SYDNotification.h"
 #import <UserNotifications/UserNotifications.h>
 
-#define margin 5
-#define btnH   32
-#define btnW   32
+#define margin 16
+#define btnH   24
+#define btnW   24
+#define logoW  96
 #define lBtnX  0
-#define rBtnX  [UIScreen mainScreen].bounds.size.width - 32
-#define btnY [UIScreen mainScreen].bounds.size.height - 32
-#define startBtnW 100
+#define rBtnX  [UIScreen mainScreen].bounds.size.width - 24
+#define btnY [UIScreen mainScreen].bounds.size.height - 24
+#define startBtnW 128
 #define pauseAndExitBtnW 70
-#define startBtnH 34
+#define startBtnH 32
 #define statusBarH 20
 #define animationW [UIScreen mainScreen].bounds.size.width * 0.2
 #define ScreenW [UIScreen mainScreen].bounds.size.width
@@ -47,14 +48,16 @@
 
 /* 圆形区域 */
 @property (nonatomic, weak) SYDCircleView *circleV;
+/* logo View */
+@property (nonatomic, weak) UIImageView *logoView;
 /* 倒计时显示的View */
 @property (nonatomic, weak) SYDTimeCountDownView *timeV;
 /* circleAnimation */
 @property (nonatomic, weak) CircleAnimation *cirAnimation;
 /* 番茄总计时长 */
-@property (nonatomic, assign) NSUInteger totalTime;
+@property (nonatomic, assign) NSInteger totalTime;
 /* 番茄当前时长 */
-@property (nonatomic, assign) NSUInteger currentTime;
+@property (nonatomic, assign) NSInteger currentTime;
 /* timer */
 @property (nonatomic, assign) dispatch_source_t timer;
 @end
@@ -63,11 +66,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // 0.设置状态栏颜色
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     // 1.初始化统计时间
     self.totalTime = 60;
     [self setUpMainView];
+    [self showLogo];
     [self setUpTimeView];
 }
 
@@ -87,37 +92,37 @@
     //左上角设置按钮
     
     UIButton * settingBtn = [[UIButton alloc] initWithFrame:CGRectMake( margin , margin + startBtnH, btnW, btnH)];
-    [settingBtn setImage:[UIImage imageNamed:@"设置"] forState:UIControlStateNormal];
+    [settingBtn setImage:[UIImage imageNamed:@"settings"] forState:UIControlStateNormal];
     [settingBtn addTarget:self action:@selector(gotoSettingPage) forControlEvents:UIControlEventTouchUpInside];
     self.settingBtn = settingBtn;
     [self.view addSubview:settingBtn];
     
     // 添加右上角个人中心按钮
     UIButton *meBtn = [[UIButton alloc] initWithFrame:CGRectMake(rBtnX - margin, margin + startBtnH, btnW, btnH)];
-    [meBtn setBackgroundImage:[UIImage imageNamed:@"个人中心"] forState:UIControlStateNormal];
+    [meBtn setBackgroundImage:[UIImage imageNamed:@"user"] forState:UIControlStateNormal];
     [meBtn addTarget:self action:@selector(gotoUserDetailPage) forControlEvents:UIControlEventTouchUpInside];
     self.meBtn = meBtn;
     [self.view addSubview: meBtn];
     
     // 开始按钮
-    UIButton *startBtn = [self setUpButtonWithFrame:CGRectMake(0, 0, startBtnW, startBtnH) bgColor:[UIColor colorWithRed:255 / 255.0 green:84 / 255.0 blue:84 / 255.0 alpha:1] alpha:1 centerX: self.view.centerX centerY:self.view.centerY * 1.4 fontSize:16 action:@selector(startBtnClick) title:@"开始计时"];
+    UIButton *startBtn = [self setUpButtonWithFrame:CGRectMake(0, 0, startBtnW, startBtnH) bgImage:[UIImage imageNamed:@"startBtn"] alpha:1 centerX: self.view.centerX centerY:self.view.centerY * 1.4 fontSize:16 action:@selector(startBtnClick) title:@""];
     self.startBtn = startBtn;
     [self.view addSubview:startBtn];
     
     // 继续按钮
-    UIButton *resumeBtn = [self setUpButtonWithFrame:CGRectMake(0, 0, startBtnW, startBtnH) bgColor:[UIColor colorWithRed:83 / 255.0 green:186 / 255.0 blue:156 / 255.0 alpha:1] alpha:0 centerX: self.view.centerX centerY:self.view.centerY * 1.4 fontSize:16 action:@selector(resumeBtnClick) title:@"继续计时"];
+    UIButton *resumeBtn = [self setUpButtonWithFrame:CGRectMake(0, 0, startBtnW, startBtnH) bgImage:[UIImage imageNamed:@""] alpha:0 centerX: self.view.centerX centerY:self.view.centerY * 1.4 fontSize:16 action:@selector(resumeBtnClick) title:@"继续计时"];
     self.resumeBtn = resumeBtn;
     [self.view addSubview:resumeBtn];
     
     // 暂停按钮
-    UIButton * pauseButton = [self setUpButtonWithFrame:CGRectMake(0, 0, pauseAndExitBtnW, startBtnH) bgColor:[UIColor clearColor] alpha:0 centerX:self.view.centerX centerY:self.view.centerY * 1.4 fontSize:14 action:@selector(pauseButtonClick) title:@"暂停"];
+    UIButton * pauseButton = [self setUpButtonWithFrame:CGRectMake(0, 0, pauseAndExitBtnW, startBtnH) bgImage:[UIImage imageNamed:@""] alpha:0 centerX:self.view.centerX centerY:self.view.centerY * 1.4 fontSize:14 action:@selector(pauseButtonClick) title:@"暂停"];
     pauseButton.layer.borderWidth = 1;
     pauseButton.layer.borderColor = [UIColor whiteColor].CGColor;
     [self.view addSubview:pauseButton];
     self.pauseBtn = pauseButton;
     
     //退出按钮
-    UIButton * exitButton = [self setUpButtonWithFrame:CGRectMake(0, 0, pauseAndExitBtnW, startBtnH) bgColor:[UIColor clearColor] alpha:0 centerX:self.view.centerX centerY:self.view.centerY * 1.4 fontSize:14 action:@selector(exitButtonClick) title:@"退出"];
+    UIButton * exitButton = [self setUpButtonWithFrame:CGRectMake(0, 0, pauseAndExitBtnW, startBtnH) bgImage:[UIImage imageNamed:@""] alpha:0 centerX:self.view.centerX centerY:self.view.centerY * 1.4 fontSize:14 action:@selector(exitButtonClick) title:@"退出"];
     exitButton.layer.borderWidth = 1;
     exitButton.titleLabel.textColor = [UIColor redColor];
     exitButton.layer.borderColor = [UIColor redColor].CGColor;
@@ -130,14 +135,15 @@
 /**
  自定义按钮添加方法
  */
-- (UIButton *)setUpButtonWithFrame:(CGRect)frame bgColor:(UIColor *)color alpha:(CGFloat)alpha
+- (UIButton *)setUpButtonWithFrame:(CGRect)frame bgImage:(UIImage *)image alpha:(CGFloat)alpha
                            centerX:(CGFloat)centerX centerY:(CGFloat)centerY
                           fontSize:(CGFloat)size action:(SEL)action title:(NSString *)title {
     UIButton *button = [[UIButton alloc] initWithFrame:frame];
-    button.backgroundColor = color;
+    
     button.alpha = alpha;
     button.centerX = centerX;
     button.centerY = centerY;
+    [button setBackgroundImage:image forState:UIControlStateNormal];
     [button setTitle:title forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:size];
     button.layer.cornerRadius = button.height * 0.5;
@@ -157,6 +163,21 @@
 }
 
 /**
+ 默认显示的logoView
+ */
+- (void)showLogo {
+    CGRect frame = CGRectMake(0, 0, logoW, logoW);
+    UIImageView *logoView = [[UIImageView alloc] initWithFrame:frame];
+    logoView.centerX = self.view.centerX;
+    logoView.centerY = self.view.centerY * 0.7;
+    logoView.backgroundColor = [UIColor darkGrayColor];
+    logoView.layer.cornerRadius = logoView.width * 0.5;
+    logoView.layer.masksToBounds = YES;
+    self.logoView = logoView;
+    [self.view addSubview:logoView];
+}
+
+/**
  初始化倒计时视图
  */
 - (void)setUpTimeView {
@@ -164,6 +185,7 @@
     SYDCircleView *circleV = [[SYDCircleView alloc] initWithFrame:CGRectMake(0, 0, ScreenW * 0.62, ScreenW * 0.62)];
     circleV.centerX = self.view.centerX;
     circleV.centerY = self.view.centerY * 0.7;
+    circleV.alpha = 0;
     circleV.backgroundColor = [UIColor clearColor];
     self.circleV = circleV;
     [self.view addSubview:circleV];
@@ -171,6 +193,7 @@
     // 添加计时区域
     SYDTimeCountDownView *timeView = [[SYDTimeCountDownView alloc] initWithFrame:self.circleV.frame];
     self.timeV = timeView;
+    timeView.alpha = 0;
     [self.view addSubview:timeView];
     [self refreshCountdownLabel];
     
@@ -186,9 +209,11 @@
     self.timer = timer;
     dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
     dispatch_source_set_event_handler(timer, ^{
-        if(self.totalTime < 0) {
+        if(self.totalTime <= 0) {
             dispatch_source_cancel(timer);
 #warning TODO 弹出提示，本地通知完成一个番茄事件
+            // 恢复按钮状态
+            [self exitButtonClick];
         } else {
             // 更新时间显示 主线程
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -255,6 +280,9 @@
     NSLog(@"点击了开始按钮");
     
     [self hideTopBtn];
+    self.logoView.hidden = YES;
+    self.timeV.alpha = 1;
+    self.circleV.alpha = 1;
     
     // 开始倒计时动画 3 。2 。1
     CountDownlabel *countdownlabel = [[CountDownlabel alloc] initWithFrame:CGRectMake(0, 300, 200, 60)];
@@ -350,6 +378,9 @@
         self.startBtn.alpha = 1;
     } completion:^(BOOL finished) {
         
+        self.logoView.hidden = NO;
+        self.timeV.alpha = 0;
+        self.circleV.alpha = 0;
         // stop timer ,时钟归位
         [self stopTimer];
         [self refreshCountdownLabel];

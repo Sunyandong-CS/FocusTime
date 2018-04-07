@@ -22,20 +22,20 @@
         
         UILabel * minuteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, minuteWidth, height)];
         minuteLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.6];
-        minuteLabel.font = [UIFont fontWithName:@"SFUIDisplay-Thin" size:46];
+        minuteLabel.font = [UIFont fontWithName:@"SFUIDisplay-Thin" size:64];
         minuteLabel.textAlignment = NSTextAlignmentRight;
         self.minuteLabel = minuteLabel;
         
         
         UILabel * middleLabel = [[UILabel alloc] initWithFrame:CGRectMake(middleX, 0, 20, height)];
         middleLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.6];
-        middleLabel.font = [UIFont fontWithName:@"SFUIDisplay-Thin" size:40];
+        middleLabel.font = [UIFont fontWithName:@"SFUIDisplay-Thin" size:64];
         middleLabel.textAlignment = NSTextAlignmentCenter;
         self.middleLabel = middleLabel;
         
         UILabel * secondLabel = [[UILabel alloc] initWithFrame:CGRectMake(secondX, 0, minuteWidth, height)];
         secondLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.6];
-        secondLabel.font = [UIFont fontWithName:@"SFUIDisplay-Thin" size:46];
+        secondLabel.font = [UIFont fontWithName:@"SFUIDisplay-Thin" size:64];
         secondLabel.textAlignment = NSTextAlignmentLeft;
         self.secondLabel = secondLabel;
         
