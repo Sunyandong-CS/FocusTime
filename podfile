@@ -3,6 +3,8 @@ platform :ios, '8.0'
 target 'FocusTime' do
 
 pod 'PGDatePicker'
+pod 'JQFMDB'
+
 
 end
 

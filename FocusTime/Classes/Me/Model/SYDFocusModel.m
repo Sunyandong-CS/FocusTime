@@ -9,5 +9,4 @@
 #import "SYDFocusModel.h"
 
 @implementation SYDFocusModel
-
 @end

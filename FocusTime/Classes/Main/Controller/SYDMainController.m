@@ -9,11 +9,14 @@
 #import "SYDMainController.h"
 #import "UIView+SYDFrame.h"
 #import "SYDCircleView.h"
+#import "SYDStatisticController.h"
 #import "CircleAnimation.h"
 #import "CountDownlabel.h"
 #import "SYDTimeCountDownView.h"
 #import "SYDSettingViewController.h"
 #import "SYDNotification.h"
+#import <JQFMDB.h>
+#import "SYDFocusModel.h"
 #import <UserNotifications/UserNotifications.h>
 
 #define margin 16
@@ -58,8 +61,16 @@
 @property (nonatomic, assign) NSInteger totalTime;
 /* 番茄当前时长 */
 @property (nonatomic, assign) NSInteger currentTime;
+/* 休息时间 */
+@property (nonatomic, assign) NSInteger restTime;
+/* 番茄时间 */
+@property (nonatomic, assign) NSInteger tomatoTime;
+/* 本次休息时间 */
+@property (nonatomic, assign) NSInteger currScheduleRestTime;
 /* timer */
 @property (nonatomic, assign) dispatch_source_t timer;
+/* setTimeStr */
+@property (nonatomic, copy) NSString *setTimeStr;
 @end
 
 @implementation SYDMainController
@@ -67,16 +78,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self getCurrentTime];
+    
     // 0.设置状态栏颜色
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    // 1.初始化统计时间
-    self.totalTime = 60;
     [self setUpMainView];
     [self showLogo];
     [self setUpTimeView];
 }
 
 #pragma mark - 初始化页面
+
+- (void)initializeCountTime {
+    
+    NSUserDefaults *focus = [NSUserDefaults standardUserDefaults];
+    NSString *hour = [focus objectForKey:@"durHours"];
+    NSString *minute = [focus objectForKey:@"durMinutes"];
+    _totalTime = hour.integerValue * 3600 + minute.integerValue * 60;
+    _currentTime = 0;
+    _restTime = 0;
+    _currScheduleRestTime = 10 * 60;
+    _tomatoTime = 25 * 60; // 番茄时间默认25 min
+    
+    if (hour.integerValue > 0 ) {
+        self.setTimeStr = [NSString stringWithFormat:@"%@h%@m",hour,minute];
+    } else {
+        self.setTimeStr = [NSString stringWithFormat:@"  %@m",minute];
+    }
+}
 
 /**
  初始化主页的视图
@@ -111,6 +140,8 @@
     
     // 继续按钮
     UIButton *resumeBtn = [self setUpButtonWithFrame:CGRectMake(0, 0, startBtnW, startBtnH) bgImage:[UIImage imageNamed:@""] alpha:0 centerX: self.view.centerX centerY:self.view.centerY * 1.4 fontSize:16 action:@selector(resumeBtnClick) title:@"继续计时"];
+    resumeBtn.layer.borderWidth = 1;
+    resumeBtn.layer.borderColor = [UIColor whiteColor].CGColor;
     self.resumeBtn = resumeBtn;
     [self.view addSubview:resumeBtn];
     
@@ -168,6 +199,7 @@
 - (void)showLogo {
     CGRect frame = CGRectMake(0, 0, logoW, logoW);
     UIImageView *logoView = [[UIImageView alloc] initWithFrame:frame];
+    logoView.image = [UIImage imageNamed:@"ic_launcher"];
     logoView.centerX = self.view.centerX;
     logoView.centerY = self.view.centerY * 0.7;
     logoView.backgroundColor = [UIColor darkGrayColor];
@@ -211,9 +243,10 @@
     dispatch_source_set_event_handler(timer, ^{
         if(self.totalTime <= 0) {
             dispatch_source_cancel(timer);
-#warning TODO 弹出提示，本地通知完成一个番茄事件
-            // 恢复按钮状态
-            [self exitButtonClick];
+            // 恢复按钮状态, 主线程操作
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self exitButtonClick];
+            });
         } else {
             // 更新时间显示 主线程
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -222,6 +255,15 @@
         }
     });
     dispatch_resume(timer);
+}
+
+
+
+#pragma mark - 保存模型到数据库
+- (void)saveDataWithModel:(SYDFocusModel *)model {
+    JQFMDB *db = [JQFMDB shareDatabase];
+    [db jq_createTable:@"time" dicOrModel:model];
+    [db jq_insertTable:@"time" dicOrModel:model];
 }
 
 - (void)clearTimeLabel {
@@ -233,7 +275,7 @@
 
 // 更新timelabel时间
 - (void)refreshCountdownLabel {
-    if(self.totalTime <= 0){ //倒计时结束，关闭
+    if(self.totalTime < 0){ //倒计时结束，关闭
         self.timeV.minuteLabel.text = @"00";
         self.timeV.middleLabel.text = @":";
         self.timeV.secondLabel.text = @"00";
@@ -251,7 +293,8 @@
         self.timeV.middleLabel.text = @":";
         self.timeV.secondLabel.text = [NSString stringWithFormat:@"%.2ld",(long)seconds];
         
-        self.totalTime--;
+        self.currentTime ++;
+        self.totalTime --;
     }
 }
 
@@ -265,12 +308,18 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SYDSettingViewController" bundle:nil];
     SYDSettingViewController *setVC = [storyboard instantiateInitialViewController];
 //    [self pushViewController:setVC animated:YES];
+//    [self.navigationController pushViewController:setVC animated:YES];
     [self presentViewController:setVC animated:YES completion:nil];
     
 }
 
 - (void)gotoUserDetailPage {
     NSLog(@"点了个人中心");
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MeViewController" bundle:nil];
+    SYDSettingViewController *setVC = [storyboard instantiateInitialViewController];
+    //    [self pushViewController:setVC animated:YES];
+    //    [self.navigationController pushViewController:setVC animated:YES];
+    [self presentViewController:setVC animated:YES completion:nil];
 }
 
 /**
@@ -278,29 +327,32 @@
  */
 - (void)startBtnClick {
     NSLog(@"点击了开始按钮");
+    // 1.初始化统计时间
+    [self initializeCountTime];
     
     [self hideTopBtn];
     self.logoView.hidden = YES;
     self.timeV.alpha = 1;
     self.circleV.alpha = 1;
     
+    
     // 开始倒计时动画 3 。2 。1
-    CountDownlabel *countdownlabel = [[CountDownlabel alloc] initWithFrame:CGRectMake(0, 300, 200, 60)];
-    countdownlabel.textAlignment = NSTextAlignmentCenter;
-    countdownlabel.centerX = self.view.centerX;
-    countdownlabel.centerY = self.view.centerY * 0.8;
-    countdownlabel.textColor = [UIColor whiteColor];
-    countdownlabel.font = [UIFont systemFontOfSize:30];
-    [self.view addSubview:countdownlabel];
+//    CountDownlabel *countdownlabel = [[CountDownlabel alloc] initWithFrame:CGRectMake(0, 300, 200, 60)];
+//    countdownlabel.textAlignment = NSTextAlignmentCenter;
+//    countdownlabel.centerX = self.view.centerX;
+//    countdownlabel.centerY = self.view.centerY * 0.8;
+//    countdownlabel.textColor = [UIColor whiteColor];
+//    countdownlabel.font = [UIFont systemFontOfSize:30];
+//    [self.view addSubview:countdownlabel];
     
     self.circleV.alpha = 0;
     self.timeV.alpha = 0;
     self.startBtn.alpha = 0;
     
-    [countdownlabel startCount];
+//    [countdownlabel startCount];
     
     // 按钮动画
-    [UIView animateWithDuration:0.3 delay:4.0 options:0 animations:^{
+    [UIView animateWithDuration:0.3 delay:0 options:0 animations:^{
         self.startBtn.alpha = 0;
         self.pauseBtn.alpha = 1;
         self.exitBtn.alpha = 1;
@@ -381,12 +433,13 @@
         self.logoView.hidden = NO;
         self.timeV.alpha = 0;
         self.circleV.alpha = 0;
+        
         // stop timer ,时钟归位
         [self stopTimer];
         [self refreshCountdownLabel];
         [self.cirAnimation removeFromSuperview];
-        
         [self showTopBtn];
+        
         
     }];
 }
@@ -407,12 +460,50 @@
     if(_timer){
         dispatch_source_cancel(_timer);
         _timer = nil;
+        SYDFocusModel *model = [[SYDFocusModel alloc] init];
+        
+        model.dateTime = [[NSDate date] timeIntervalSince1970];
+        NSLog(@"%f",model.dateTime);
+        
+        model.date = [self getCurrentDate];
+        model.finishTime = [self getCurrentTime];
+        model.setTime = self.setTimeStr;
+        model.actualTime = self.setTimeStr;
+        model.errorTime = @"  0m";
+        model.restTime = @"  0m";
+        
+        if (self.totalTime != 0) {
+            // 任务不成功，跳转至统计页面，显示失败任务
+            [self showStatisticPageWithStatus:@"专注失败"];
+            model.status = @"失败";
+            if(self.currentTime >= 3600) {
+                model.actualTime = [NSString stringWithFormat:@"%ih%lim",self.currentTime / 3600,self.currentTime % 3600/60];
+            } else {
+                model.actualTime = [NSString stringWithFormat:@"%im",self.currentTime / 60];
+            }
+            
+        } else {
+            model.status = @"成功";
+        }
+        [self saveDataWithModel:model];
         
         // 统计时间归位
-        self.totalTime = 1500;
+        [self initializeCountTime];
+        
     }
 }
 
+- (void)showStatisticPageWithStatus:(NSString *)status {
+    SYDStatisticController *staVC = [[SYDStatisticController alloc] initWithNibName:NSStringFromClass([SYDStatisticController class]) bundle:nil];
+    
+    staVC.status = status;
+    staVC.studyTime = self.currentTime;
+    staVC.scheduleTime = self.currentTime + self.totalTime;
+    [self presentViewController:staVC animated:YES completion:^{
+       // 存数据
+        
+    }];
+}
 #pragma mark - 通知
 - (void)postNotification {
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
@@ -438,4 +529,34 @@
     self.settingBtn.hidden = YES;
     self.meBtn.hidden = YES;
 }
+
+#pragma mark - 工具方法
+- (NSString *)getCurrentDate {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    [formatter setDateFormat:@"MM-dd"];
+    //现在时间,你可以输出来看下是什么格式
+    NSDate *datenow = [NSDate date];
+    
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    NSLog(@"==========%@",currentTimeString);
+    return currentTimeString;
+}
+- (NSString *)getCurrentTime {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    
+    [formatter setDateFormat:@"HH:mm"];
+    //现在时间,你可以输出来看下是什么格式
+    NSDate *datenow = [NSDate date];
+    
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    
+    return currentTimeString;
+}
+
 @end

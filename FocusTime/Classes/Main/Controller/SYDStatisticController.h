@@ -9,5 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface SYDStatisticController : UIViewController
+/* status */
+@property (nonatomic, copy) NSString *status;
+/* studytime */
+@property (nonatomic, assign) NSInteger studyTime;
+/* Schedulestudytime */
+@property (nonatomic, assign) NSInteger scheduleTime;
+/* resttime */
+@property (nonatomic, assign) NSInteger restTime;
 
 @end

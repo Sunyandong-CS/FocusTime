@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '360DF48104C9E7E57B3E5B9C2DC4E06F'
+               BlueprintIdentifier = 'E826C48CDF0E5F67C28E068E642122A6'
                BlueprintName = 'Pods-FocusTime'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-FocusTime.a'>

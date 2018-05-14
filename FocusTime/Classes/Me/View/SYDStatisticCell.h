@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SYDFocusModel.h"
 @interface SYDStatisticCell : UITableViewCell
+
+/* 专注数据模型 */
+@property (nonatomic, strong) SYDFocusModel *focusModel;
 
 @end
