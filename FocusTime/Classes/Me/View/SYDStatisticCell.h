@@ -12,5 +12,6 @@
 
 /* 专注数据模型 */
 @property (nonatomic, strong) SYDFocusModel *focusModel;
-
+/* 是否显示日期 */
+@property (nonatomic, assign) Boolean isShowDate;
 @end

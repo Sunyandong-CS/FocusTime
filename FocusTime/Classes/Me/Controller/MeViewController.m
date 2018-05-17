@@ -9,15 +9,18 @@
 #import <JQFMDB.h>
 #import "MeViewController.h"
 #import "SYDStatisticCell.h"
-
+#import "SYDTimeFormatter.h"
 static NSString * const statisticCellId = @"statisticCell";
 
 @interface MeViewController ()<UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIView *statisticView;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UILabel *todayTotalTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *TodayFocusTimes;
+/* 今日专注时间 */
+@property (nonatomic, assign) NSInteger todayFocusTime;
 /* 今日专注数据 */
-@property (nonatomic, strong) NSMutableArray *modelArr;
+@property (nonatomic, strong) NSMutableArray<SYDFocusModel *> *modelArr;
 @end
 
 @implementation MeViewController
@@ -44,20 +47,29 @@ static NSString * const statisticCellId = @"statisticCell";
 
 - (void)loadData {
     // 从数据库加载统计数据
+    _todayFocusTime = 0;
     JQFMDB *db = [JQFMDB shareDatabase];
     NSArray<SYDFocusModel *> *arr = [db jq_lookupTable:@"time" dicOrModel:[SYDFocusModel class] whereFormat:nil];
     [self.modelArr addObjectsFromArray:arr];
-    for (int i = 0; i < arr.count; i ++) {
-        NSLog(@"%fi",arr[i].dateTime);
+    NSString *date = [self getCurrentDate];
+    
+    for (SYDFocusModel *data in arr) {
+        if (data.date == date) {
+            _todayFocusTime += data.studyTime;
+        }
     }
     _TodayFocusTimes.text = [NSString stringWithFormat:@"%lu次",(unsigned long)arr.count];
-    
+    _todayTotalTimeLabel.text = [SYDTimeFormatter syd_timeWithSecounds:_todayFocusTime];
 }
 
 - (void)initializeView {
-    self.navigationItem.title = @"今日统计";
+    self.navigationItem.title = @"个人中心";
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [self setNeedsNavigationBackground:0.0];
+    
+    // 初始化statisticView
+    self.statisticView.layer.cornerRadius = 4;
+    self.statisticView.layer.masksToBounds = YES;
     
     // 初始化tableView
     self.tableview.delegate = self;
@@ -89,19 +101,23 @@ static NSString * const statisticCellId = @"statisticCell";
 
 #pragma mark - UITableViewDatasource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 108;
+    NSInteger count = self.modelArr.count;
+    if (indexPath.row != 0 && [self.modelArr[count - indexPath.row - 1].date isEqualToString:self.modelArr[count - indexPath.row].date]) {
+        return 108 - 15;
+    } else {
+        return 108;
+    }
+    
 }
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     SYDStatisticCell *cell = [self.tableview dequeueReusableCellWithIdentifier:statisticCellId forIndexPath:indexPath];
-
-//    SYDFocusModel *model = [[SYDFocusModel alloc] init];
-//    model.date = @"5月9日";
-//    model.finishTime = @"13:49";
-//    model.setTime = @"50分钟";
-//    model.actualTime = @"50分钟";
-//    model.restTime = @"5分钟";
-//    model.errorTime = @"0分钟";
-    cell.focusModel = self.modelArr[indexPath.row];
+    NSUInteger count = self.modelArr.count;
+    cell.focusModel = self.modelArr[count - indexPath.row - 1];
+    if (indexPath.row != 0 && [self.modelArr[count - indexPath.row - 1].date isEqualToString:self.modelArr[count - indexPath.row].date]) {
+        cell.isShowDate = false;
+    } else {
+        cell.isShowDate = true;
+    }
     return cell;
 }
 
@@ -110,4 +126,17 @@ static NSString * const statisticCellId = @"statisticCell";
     return _modelArr.count;
 }
 
+
+#pragma mark - 获取日期
+- (NSString *)getCurrentDate {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    [formatter setDateFormat:@"MM-dd"];
+    //现在时间,你可以输出来看下是什么格式
+    NSDate *datenow = [NSDate date];
+    
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    return currentTimeString;
+}
 @end

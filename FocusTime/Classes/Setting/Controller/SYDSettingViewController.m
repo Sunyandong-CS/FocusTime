@@ -8,6 +8,7 @@
 
 #import "SYDSettingViewController.h"
 #import <PGDatePicker/PGDatePickManager.h>
+#import "SYDChangeThemeController.h"
 @interface SYDSettingViewController ()<PGDatePickerDelegate>
 
 /* section one */
@@ -120,40 +121,7 @@
 //    return _restPicker;
 //}
 #pragma mark - UITableViewDatasource
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 2;
-//}
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if (section == 0) {
-//        return self.sectionOneArr.count;
-//    } else if(section == 1) {
-//        return self.sectionTwoArr.count;
-//    } else {
-//        return 0;
-//    }
-//}
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//
-//    UITableViewCell *cell = self.tableView.visibleCells[indexPath.row];
-//
-//    if (indexPath.section == 0) {
-//        if (indexPath.row == 1) {
-//            NSUserDefaults *focus = [NSUserDefaults standardUserDefaults];
-//            NSString *hour = [focus objectForKey:@"durHours"];
-//            NSString *minute = [focus objectForKey:@"durMinutes"];
-//            if (hour != NULL && minute != NULL) {
-//                if ([hour  isEqual: @"0"]) {
-//                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@分钟", minute];
-//                } else {
-//                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@小时%@分钟",hour,minute];
-//                }
-//            }
-//        } else {
-//
-//        }
-//    }
-//    return cell;
-//}
+
 
 #pragma mark - UItableviewDelegate
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -170,6 +138,10 @@
             datePicker.delegate = self;
             datePicker.datePickerMode = PGDatePickerModeTime;
             [self presentViewController:datePickManager animated:false completion:nil];
+        } else if(indexPath.row == 0) {
+            // 跳转至换肤
+            SYDChangeThemeController *changeThemeVC = [[SYDChangeThemeController alloc] init];
+            [self.navigationController pushViewController:changeThemeVC animated:YES];
         }
     }
     return indexPath;

@@ -13,9 +13,14 @@
 		CF02D3F1208E0E5C00A67604 /* MeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF02D3F0208E0E5C00A67604 /* MeViewController.storyboard */; };
 		CF02D3F5208E166100A67604 /* SYDStatisticController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF02D3F3208E166100A67604 /* SYDStatisticController.m */; };
 		CF02D3F6208E166100A67604 /* SYDStatisticController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF02D3F4208E166100A67604 /* SYDStatisticController.xib */; };
+		CF32F64020AD651500A3B938 /* SYDChangeThemeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF32F63F20AD651500A3B938 /* SYDChangeThemeController.m */; };
+		CF32F64420AD668000A3B938 /* SYDThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF32F64220AD668000A3B938 /* SYDThemeCell.m */; };
+		CF32F64520AD668000A3B938 /* SYDThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF32F64320AD668000A3B938 /* SYDThemeCell.xib */; };
+		CF60626220AC2C5C00D6AF06 /* SYDHistoryStatisticViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF60626120AC2C5C00D6AF06 /* SYDHistoryStatisticViewController.m */; };
 		CF6859C12070EFCF005DE0B5 /* CircleAnimation.h in Sources */ = {isa = PBXBuildFile; fileRef = CF951773206B360100CE221D /* CircleAnimation.h */; };
 		CF951775206B360100CE221D /* CircleAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF951774206B360100CE221D /* CircleAnimation.m */; };
 		CF95177A206BCA6E00CE221D /* SYDNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = CF951779206BCA6E00CE221D /* SYDNotification.m */; };
+		CF9CC4E720AB1F9C007D3F37 /* SYDTimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9CC4E620AB1F9C007D3F37 /* SYDTimeFormatter.m */; };
 		CFA19A9D2066974B005883F5 /* SYDSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA19A9C2066974B005883F5 /* SYDSettingViewController.m */; };
 		CFA19A9F20669A03005883F5 /* SYDSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFA19A9E20669A03005883F5 /* SYDSettingViewController.storyboard */; };
 		CFB3B51D205B9B2D00372E78 /* SYDCircleView.h in Sources */ = {isa = PBXBuildFile; fileRef = CFEB05BA205A52650078A2E9 /* SYDCircleView.h */; };
@@ -69,10 +74,19 @@
 		CF02D3F2208E166100A67604 /* SYDStatisticController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDStatisticController.h; sourceTree = "<group>"; };
 		CF02D3F3208E166100A67604 /* SYDStatisticController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDStatisticController.m; sourceTree = "<group>"; };
 		CF02D3F4208E166100A67604 /* SYDStatisticController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SYDStatisticController.xib; sourceTree = "<group>"; };
+		CF32F63E20AD651500A3B938 /* SYDChangeThemeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDChangeThemeController.h; sourceTree = "<group>"; };
+		CF32F63F20AD651500A3B938 /* SYDChangeThemeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDChangeThemeController.m; sourceTree = "<group>"; };
+		CF32F64120AD668000A3B938 /* SYDThemeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDThemeCell.h; sourceTree = "<group>"; };
+		CF32F64220AD668000A3B938 /* SYDThemeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDThemeCell.m; sourceTree = "<group>"; };
+		CF32F64320AD668000A3B938 /* SYDThemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SYDThemeCell.xib; sourceTree = "<group>"; };
+		CF60626020AC2C5C00D6AF06 /* SYDHistoryStatisticViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDHistoryStatisticViewController.h; sourceTree = "<group>"; };
+		CF60626120AC2C5C00D6AF06 /* SYDHistoryStatisticViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDHistoryStatisticViewController.m; sourceTree = "<group>"; };
 		CF951773206B360100CE221D /* CircleAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleAnimation.h; sourceTree = "<group>"; };
 		CF951774206B360100CE221D /* CircleAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleAnimation.m; sourceTree = "<group>"; };
 		CF951778206BCA6E00CE221D /* SYDNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDNotification.h; sourceTree = "<group>"; };
 		CF951779206BCA6E00CE221D /* SYDNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDNotification.m; sourceTree = "<group>"; };
+		CF9CC4E520AB1F9C007D3F37 /* SYDTimeFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDTimeFormatter.h; sourceTree = "<group>"; };
+		CF9CC4E620AB1F9C007D3F37 /* SYDTimeFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDTimeFormatter.m; sourceTree = "<group>"; };
 		CFA19A9B2066974B005883F5 /* SYDSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDSettingViewController.h; sourceTree = "<group>"; };
 		CFA19A9C2066974B005883F5 /* SYDSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDSettingViewController.m; sourceTree = "<group>"; };
 		CFA19A9E20669A03005883F5 /* SYDSettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SYDSettingViewController.storyboard; sourceTree = "<group>"; };
@@ -243,6 +257,8 @@
 				CF951779206BCA6E00CE221D /* SYDNotification.m */,
 				CF02D3EA208DD85400A67604 /* SYDUserDefaultsTools.h */,
 				CF02D3EB208DD85400A67604 /* SYDUserDefaultsTools.m */,
+				CF9CC4E520AB1F9C007D3F37 /* SYDTimeFormatter.h */,
+				CF9CC4E620AB1F9C007D3F37 /* SYDTimeFormatter.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -272,6 +288,8 @@
 				CF02D3ED208E0E5100A67604 /* MeViewController.h */,
 				CF02D3F0208E0E5C00A67604 /* MeViewController.storyboard */,
 				CF02D3EE208E0E5100A67604 /* MeViewController.m */,
+				CF60626020AC2C5C00D6AF06 /* SYDHistoryStatisticViewController.h */,
+				CF60626120AC2C5C00D6AF06 /* SYDHistoryStatisticViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -311,6 +329,8 @@
 				CFA19A9B2066974B005883F5 /* SYDSettingViewController.h */,
 				CFA19A9C2066974B005883F5 /* SYDSettingViewController.m */,
 				CFA19A9E20669A03005883F5 /* SYDSettingViewController.storyboard */,
+				CF32F63E20AD651500A3B938 /* SYDChangeThemeController.h */,
+				CF32F63F20AD651500A3B938 /* SYDChangeThemeController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -325,6 +345,9 @@
 		CFCBE676205963D800714D2B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CF32F64120AD668000A3B938 /* SYDThemeCell.h */,
+				CF32F64220AD668000A3B938 /* SYDThemeCell.m */,
+				CF32F64320AD668000A3B938 /* SYDThemeCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -523,6 +546,7 @@
 				CFC36CEE20774C06008BF97F /* Assets.xcassets in Resources */,
 				CFEB837120A3F4CB0055ED2E /* SYDStatisticCell.xib in Resources */,
 				CFA19A9F20669A03005883F5 /* SYDSettingViewController.storyboard in Resources */,
+				CF32F64520AD668000A3B938 /* SYDThemeCell.xib in Resources */,
 				CF02D3F6208E166100A67604 /* SYDStatisticController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,8 +626,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF60626220AC2C5C00D6AF06 /* SYDHistoryStatisticViewController.m in Sources */,
+				CF9CC4E720AB1F9C007D3F37 /* SYDTimeFormatter.m in Sources */,
 				CF6859C12070EFCF005DE0B5 /* CircleAnimation.h in Sources */,
 				CF02D3F5208E166100A67604 /* SYDStatisticController.m in Sources */,
+				CF32F64020AD651500A3B938 /* SYDChangeThemeController.m in Sources */,
 				CFB3B51D205B9B2D00372E78 /* SYDCircleView.h in Sources */,
 				CFCBE695205969C800714D2B /* main.m in Sources */,
 				CF951775206B360100CE221D /* CircleAnimation.m in Sources */,
@@ -620,6 +647,7 @@
 				CFCBE68B205966BC00714D2B /* SYDConst.m in Sources */,
 				CFEB05BC205A52650078A2E9 /* SYDCircleView.m in Sources */,
 				CF02D3EF208E0E5100A67604 /* MeViewController.m in Sources */,
+				CF32F64420AD668000A3B938 /* SYDThemeCell.m in Sources */,
 				CF02D3EC208DD85400A67604 /* SYDUserDefaultsTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -784,6 +812,7 @@
 			baseConfigurationReference = 94D083B9CF109955F2F3ABCA /* Pods-FocusTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BBKVX2RMVD;
 				INFOPLIST_FILE = FocusTime/Info.plist;
@@ -791,6 +820,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xidian.FocusTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -800,6 +830,7 @@
 			baseConfigurationReference = C3CE238BB2172C278D20E087 /* Pods-FocusTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BBKVX2RMVD;
 				INFOPLIST_FILE = FocusTime/Info.plist;
@@ -807,6 +838,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xidian.FocusTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

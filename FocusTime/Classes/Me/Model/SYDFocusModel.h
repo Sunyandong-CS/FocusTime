@@ -25,4 +25,6 @@
 @property (nonatomic, copy) NSString *restTime;
 /* 程序异常时间 */
 @property (nonatomic, copy) NSString *errorTime;
+/* 以秒记的学习时间 */
+@property (nonatomic, assign) NSInteger studyTime;
 @end

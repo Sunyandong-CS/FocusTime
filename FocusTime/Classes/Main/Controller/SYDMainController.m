@@ -17,6 +17,7 @@
 #import "SYDNotification.h"
 #import <JQFMDB.h>
 #import "SYDFocusModel.h"
+#import "SYDTimeFormatter.h"
 #import <UserNotifications/UserNotifications.h>
 
 #define margin 16
@@ -68,7 +69,13 @@
 /* 本次休息时间 */
 @property (nonatomic, assign) NSInteger currScheduleRestTime;
 /* timer */
-@property (nonatomic, assign) dispatch_source_t timer;
+@property (nonatomic, strong) dispatch_source_t timer;
+/* 休息的timer */
+@property (nonatomic, strong) dispatch_source_t restTimer;
+/* 休息duilie */
+@property (nonatomic, strong) dispatch_queue_t restQueue;
+/* 判断timer是否被挂起，被挂起状态下的timer无法被释放，会出现错误 */
+@property (nonatomic, assign) Boolean isSuspend;
 /* setTimeStr */
 @property (nonatomic, copy) NSString *setTimeStr;
 @end
@@ -95,15 +102,21 @@
     NSString *hour = [focus objectForKey:@"durHours"];
     NSString *minute = [focus objectForKey:@"durMinutes"];
     _totalTime = hour.integerValue * 3600 + minute.integerValue * 60;
+    if (_totalTime <= 0) { // 默认时间25min
+        _totalTime = 25 * 60;
+    }
+    _isSuspend = NO;
     _currentTime = 0;
     _restTime = 0;
-    _currScheduleRestTime = 10 * 60;
+    _currScheduleRestTime = 10;
     _tomatoTime = 25 * 60; // 番茄时间默认25 min
     
     if (hour.integerValue > 0 ) {
         self.setTimeStr = [NSString stringWithFormat:@"%@h%@m",hour,minute];
-    } else {
+    } else if(minute.intValue > 0){
         self.setTimeStr = [NSString stringWithFormat:@"  %@m",minute];
+    } else {
+        self.setTimeStr = @"25m";
     }
 }
 
@@ -207,6 +220,8 @@
     logoView.layer.masksToBounds = YES;
     self.logoView = logoView;
     [self.view addSubview:logoView];
+    
+    // 动画效果
 }
 
 /**
@@ -239,10 +254,11 @@
     dispatch_queue_t quene = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, quene);
     self.timer = timer;
-    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-    dispatch_source_set_event_handler(timer, ^{
+    dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(_timer, ^{
+        NSLog(@"%@",[NSThread currentThread]);
         if(self.totalTime <= 0) {
-            dispatch_source_cancel(timer);
+            dispatch_source_cancel(_timer);
             // 恢复按钮状态, 主线程操作
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self exitButtonClick];
@@ -254,7 +270,39 @@
             });
         }
     });
-    dispatch_resume(timer);
+    dispatch_resume(_timer);
+}
+- (void)addRestTimer {
+    //开启专门的线程处理timer
+    dispatch_queue_t quene = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, quene);
+    self.restTimer = timer;
+    dispatch_source_set_timer(_restTimer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(_restTimer, ^{
+        if(self.restTime >= self.currScheduleRestTime){ //休息结束，提示继续学习
+            // 恢复按钮状态, 主线程操作
+            dispatch_source_cancel(_restTimer);
+            _restTimer = nil;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 弹出提示2
+                UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"休息结束" message:@"休息时间到，请回到专注中~" preferredStyle:UIAlertControllerStyleAlert];
+                [alertCtrl addAction:[UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    // 休息时间减半，继续计时
+                    self.currScheduleRestTime = self.currScheduleRestTime * 1.5;
+                    [self addRestTimer];
+//                    [self refreshRestTime];
+                }]];
+                [alertCtrl addAction:[UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    self.currScheduleRestTime = self.currScheduleRestTime * 1.5;
+                    [self resumeBtnClick];
+                }]];
+                [self presentViewController:alertCtrl animated:YES completion:nil];
+            });
+        } else {
+            [self refreshRestTime];
+        }
+    });
+    dispatch_resume(_restTimer);
 }
 
 
@@ -287,7 +335,6 @@
         NSInteger minutes = self.totalTime / 60;
         NSInteger seconds = self.totalTime % 60;
         
-        
         //设置界面的按钮显示 根据自己需求设置
         self.timeV.minuteLabel.text = [NSString stringWithFormat:@"%.2ld",(long)minutes];
         self.timeV.middleLabel.text = @":";
@@ -297,6 +344,11 @@
         self.totalTime --;
     }
 }
+// 更新休息时间
+- (void)refreshRestTime {
+    self.restTime ++;
+    NSLog(@"%li",(long)self.restTime);
+}
 
 #pragma mark ***点击事件***
 
@@ -304,11 +356,8 @@
     NSLog(@"点了设置");
     
     // Setting  修改从storyboard加载
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SYDSettingViewController" bundle:nil];
     SYDSettingViewController *setVC = [storyboard instantiateInitialViewController];
-//    [self pushViewController:setVC animated:YES];
-//    [self.navigationController pushViewController:setVC animated:YES];
     [self presentViewController:setVC animated:YES completion:nil];
     
 }
@@ -317,8 +366,6 @@
     NSLog(@"点了个人中心");
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MeViewController" bundle:nil];
     SYDSettingViewController *setVC = [storyboard instantiateInitialViewController];
-    //    [self pushViewController:setVC animated:YES];
-    //    [self.navigationController pushViewController:setVC animated:YES];
     [self presentViewController:setVC animated:YES completion:nil];
 }
 
@@ -377,6 +424,10 @@
  */
 - (void)resumeBtnClick {
     NSLog(@"点击了开始按钮");
+    if (_restTimer) {
+        [self pauseRestTimer]; // 休息结束
+    }
+
     // 按钮动画
     [UIView animateWithDuration:0.3 animations:^{
         self.resumeBtn.alpha = 0;
@@ -392,6 +443,7 @@
         // 定时器继续
         [self resumeTimer];
         [self.cirAnimation setHidden:NO];
+        
     }];
 }
 
@@ -413,6 +465,12 @@
         [self pauseTimer];
         [self.cirAnimation setHidden:YES];
         
+        // 后台记录休息时间
+        if(!_restTimer) {
+            [self addRestTimer];
+        } else {
+            [self resumeRestTimer];
+        }
     }];
 }
 
@@ -428,6 +486,8 @@
         self.exitBtn.centerX -= animationW;
         self.exitBtn.alpha = 0.0;
         self.startBtn.alpha = 1;
+//        [self resumeRestTimer]; // 处于suspend状态下的timer无法被释放
+//        dispatch_source_cancel(_restTimer);
     } completion:^(BOOL finished) {
         
         self.logoView.hidden = NO;
@@ -456,34 +516,52 @@
         dispatch_resume(_timer);
     }
 }
+-(void) pauseRestTimer{
+    if(_restTimer){
+        _isSuspend = YES;
+        dispatch_suspend(_restTimer);
+    }
+}
+-(void) resumeRestTimer{
+    NSLog(@"当前休息时间%i，继续休息。。。",self.restTime);
+    if(_restTimer){
+        dispatch_resume(_restTimer);
+    }
+}
+
+
 -(void) stopTimer{
     if(_timer){
         dispatch_source_cancel(_timer);
+        if (_restTimer) {
+            if (_isSuspend) {
+                [self resumeRestTimer];
+            }
+            dispatch_source_cancel(_restTimer); // 取消休息的timer
+            _restTimer = nil;
+        }
         _timer = nil;
         SYDFocusModel *model = [[SYDFocusModel alloc] init];
         
         model.dateTime = [[NSDate date] timeIntervalSince1970];
         NSLog(@"%f",model.dateTime);
         
+        model.studyTime = self.currentTime;
         model.date = [self getCurrentDate];
         model.finishTime = [self getCurrentTime];
         model.setTime = self.setTimeStr;
         model.actualTime = self.setTimeStr;
         model.errorTime = @"  0m";
-        model.restTime = @"  0m";
+        model.restTime = [SYDTimeFormatter syd_timeWithSecounds:self.restTime];
         
         if (self.totalTime != 0) {
             // 任务不成功，跳转至统计页面，显示失败任务
             [self showStatisticPageWithStatus:@"专注失败"];
-            model.status = @"失败";
-            if(self.currentTime >= 3600) {
-                model.actualTime = [NSString stringWithFormat:@"%ih%lim",self.currentTime / 3600,self.currentTime % 3600/60];
-            } else {
-                model.actualTime = [NSString stringWithFormat:@"%im",self.currentTime / 60];
-            }
+            model.status = @"专注失败";
+            model.actualTime = [SYDTimeFormatter syd_timeWithSecounds:self.currentTime];
             
         } else {
-            model.status = @"成功";
+            model.status = @"专注成功";
         }
         [self saveDataWithModel:model];
         
@@ -499,32 +577,31 @@
     staVC.status = status;
     staVC.studyTime = self.currentTime;
     staVC.scheduleTime = self.currentTime + self.totalTime;
+    staVC.restTime = [SYDTimeFormatter syd_timeWithSecounds:self.restTime];
     [self presentViewController:staVC animated:YES completion:^{
        // 存数据
-        
     }];
 }
 #pragma mark - 通知
 - (void)postNotification {
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-    content.title = @"专注时间";
+    content.title = @"每刻";
     content.body = @"已完成一个番茄时间";
     UNNotificationSound *sound = [UNNotificationSound defaultSound];
     content.sound = sound;
-    [SYDNotification postNotificationWithTimeInterval:self.totalTime content:content completeHandler:^(NSError * _Nullable error) {
-        
+    [SYDNotification postNotificationWithTimeInterval:self.tomatoTime content:content completeHandler:^(NSError * _Nullable error) {
         // 完成一个番茄钟的逻辑
         NSLog(@"完成一个番茄钟");
-#warning TODO 保存到数据库展示图标
+        
+        #warning TODO 休息五分钟
+        
     }];
 }
-
 #pragma mark - 顶部按钮显示控制
 - (void)showTopBtn {
     self.settingBtn.hidden = NO;
     self.meBtn.hidden = NO;
 }
-
 - (void)hideTopBtn {
     self.settingBtn.hidden = YES;
     self.meBtn.hidden = YES;
@@ -541,7 +618,6 @@
     NSDate *datenow = [NSDate date];
     
     NSString *currentTimeString = [formatter stringFromDate:datenow];
-    NSLog(@"==========%@",currentTimeString);
     return currentTimeString;
 }
 - (NSString *)getCurrentTime {

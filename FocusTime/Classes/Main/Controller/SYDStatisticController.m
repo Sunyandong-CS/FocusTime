@@ -7,7 +7,7 @@
 //
 
 #import "SYDStatisticController.h"
-
+#import "SYDTimeFormatter.h"
 @interface SYDStatisticController ()
 @property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (weak, nonatomic) IBOutlet UILabel *taskStatusLabel;
@@ -52,8 +52,7 @@
         NSInteger secounds = _scheduleTime % 60;
         _scheduleTimeLabel.text = [NSString stringWithFormat:@"设定学习时长:%i 分%i 秒",minutes,secounds];
     }
-    
-    
+    _restTimeLabel.text = [NSString stringWithFormat:@"本次休息时长%@",_restTime];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

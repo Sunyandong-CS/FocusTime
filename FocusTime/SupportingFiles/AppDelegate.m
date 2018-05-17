@@ -69,7 +69,13 @@ extern CFAbsoluteTime StartTime;
     UNNotificationTrigger *timerTrigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:1.0 repeats:NO];
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"backgroundNotification" content:content trigger:timerTrigger];
     [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        
+        if(error) {
+            // 发送通知专注失败
+            NSLog(@"专注失败");
+        } else {
+            // 回到应用
+            NSLog(@"继续专注");
+        }
     }];
 }
 
@@ -93,6 +99,7 @@ extern CFAbsoluteTime StartTime;
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
-    
+    NSLog(@"recive response %@",response);
+    completionHandler();
 }
 @end

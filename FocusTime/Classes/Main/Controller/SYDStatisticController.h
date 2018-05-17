@@ -16,6 +16,6 @@
 /* Schedulestudytime */
 @property (nonatomic, assign) NSInteger scheduleTime;
 /* resttime */
-@property (nonatomic, assign) NSInteger restTime;
+@property (nonatomic, copy) NSString *restTime;
 
 @end

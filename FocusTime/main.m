@@ -12,7 +12,7 @@ CFAbsoluteTime StartTime;
 
 int main(int argc, char * argv[]) {
     // 记录开始时间
-    StartTime = CFAbsoluteTimeGetCurrent();
+//    StartTime = CFAbsoluteTimeGetCurrent();
     
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));

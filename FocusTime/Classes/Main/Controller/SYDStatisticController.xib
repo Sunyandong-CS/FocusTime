@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SYDStatisticController">
             <connections>
-                <outlet property="errorTimeLabel" destination="9ac-KB-DJN" id="Sqx-IZ-wVo"/>
                 <outlet property="navBar" destination="J3k-km-VKi" id="uRT-nV-qH0"/>
                 <outlet property="restTimeLabel" destination="l6c-an-rpd" id="sNU-kQ-CNE"/>
                 <outlet property="scheduleTimeLabel" destination="fX9-fQ-P5V" id="Dbw-sL-ikK"/>
@@ -47,13 +46,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfX-j7-bXn">
                     <rect key="frame" x="0.0" y="84" width="375" height="150"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务成功" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvM-mJ-Alx">
-                            <rect key="frame" x="153" y="8" width="70" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务成功" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvM-mJ-Alx">
+                            <rect key="frame" x="146.5" y="8" width="82" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="fdn-aJ-TRE"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本次学习时长：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DyX-Jc-Ta5">
@@ -71,12 +70,6 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="应用状态异常时间：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ac-KB-DJN">
-                            <rect key="frame" x="8" y="114" width="156" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设定学习时长：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fX9-fQ-P5V">
                             <rect key="frame" x="8" y="59" width="122" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -85,7 +78,6 @@
                         </label>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="9ac-KB-DJN" firstAttribute="top" secondItem="l6c-an-rpd" secondAttribute="bottom" constant="8" symbolic="YES" id="0pq-g4-Wxf"/>
                         <constraint firstItem="fX9-fQ-P5V" firstAttribute="top" secondItem="DyX-Jc-Ta5" secondAttribute="bottom" constant="5" id="1BH-PF-kjk"/>
                         <constraint firstItem="fX9-fQ-P5V" firstAttribute="leading" secondItem="bfX-j7-bXn" secondAttribute="leading" constant="8" id="6D4-A6-A0d"/>
                         <constraint firstItem="l6c-an-rpd" firstAttribute="top" secondItem="fX9-fQ-P5V" secondAttribute="bottom" constant="5" id="8LB-Ye-kKZ"/>
@@ -93,9 +85,7 @@
                         <constraint firstItem="FvM-mJ-Alx" firstAttribute="top" secondItem="bfX-j7-bXn" secondAttribute="top" constant="8" id="O6Q-9h-1sy"/>
                         <constraint firstItem="DyX-Jc-Ta5" firstAttribute="leading" secondItem="bfX-j7-bXn" secondAttribute="leading" constant="8" id="a4e-fv-TCV"/>
                         <constraint firstAttribute="height" constant="150" id="b9H-Tt-QCQ"/>
-                        <constraint firstItem="l6c-an-rpd" firstAttribute="leading" secondItem="9ac-KB-DJN" secondAttribute="leading" id="fQo-X2-Gjy"/>
                         <constraint firstItem="l6c-an-rpd" firstAttribute="leading" secondItem="fX9-fQ-P5V" secondAttribute="leading" id="fvS-lu-yqP"/>
-                        <constraint firstItem="9ac-KB-DJN" firstAttribute="height" secondItem="l6c-an-rpd" secondAttribute="height" id="rqA-7o-e9h"/>
                         <constraint firstItem="FvM-mJ-Alx" firstAttribute="centerX" secondItem="bfX-j7-bXn" secondAttribute="centerX" id="vYC-E6-EcA"/>
                     </constraints>
                 </view>

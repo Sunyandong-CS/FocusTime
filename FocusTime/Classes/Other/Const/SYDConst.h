@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+// 获取导航栏和状态栏高度
+#define getRectNavAndStatusHight  self.navigationController.navigationBar.frame.size.height+[[UIApplication sharedApplication] statusBarFrame].size.height
 @interface SYDConst : NSObject
 
 @end
