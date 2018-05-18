@@ -48,37 +48,37 @@
 
 - (void)setNeedsNavigationBackground:(CGFloat)alpha {
 
-// 导航栏背景透明度设置
+	// 导航栏背景透明度设置
 
-UIView *barBackgroundView = [[self.navigationController.navigationBar subviews] objectAtIndex:0];// _UIBarBackground
+	UIView *barBackgroundView = [[self.navigationController.navigationBar subviews] objectAtIndex:0];// _UIBarBackground
 
-UIImageView *backgroundImageView = [[barBackgroundView subviews] objectAtIndex:0];// UIImageView
+	UIImageView *backgroundImageView = [[barBackgroundView subviews] objectAtIndex:0];// UIImageView
 
-if (self.navigationController.navigationBar.isTranslucent) {
+	if (self.navigationController.navigationBar.isTranslucent) {
 
-if (backgroundImageView != nil && backgroundImageView.image != nil) {
+		if (backgroundImageView != nil && backgroundImageView.image != nil) {
 
-barBackgroundView.alpha = alpha;
+			barBackgroundView.alpha = alpha;
 
-} else {
+		} else {
 
-UIView *backgroundEffectView = [[barBackgroundView subviews] objectAtIndex:1];// UIVisualEffectView
+			UIView *backgroundEffectView = [[barBackgroundView subviews] objectAtIndex:1];// UIVisualEffectView
 
-if (backgroundEffectView != nil) {
+			if (backgroundEffectView != nil) {
 
-backgroundEffectView.alpha = alpha;
+				backgroundEffectView.alpha = alpha;
 
-}
+			}
 
-}
+		}
 
-} else {
+	} else {
 
-barBackgroundView.alpha = alpha;
+		barBackgroundView.alpha = alpha;
 
-}
+	}
 
-self.navigationController.navigationBar.clipsToBounds = alpha == 0.0;
+	self.navigationController.navigationBar.clipsToBounds = alpha == 0.0;
 
 }
 
