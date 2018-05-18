@@ -87,11 +87,11 @@ self.navigationController.navigationBar.clipsToBounds = alpha == 0.0;
 ## Demonstrate
 
 ### 各部分页面截图
-* 首页 ![](://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/home.png)
-* 暂停开始 ![](://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/rest.png)![](://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/pause.png)![](://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/finish.png)
-* 个人中心 ![](://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/selfCenter.png)
-* 设置 ![](://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/setting.png)
+* 首页 ![](https://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/home.png)
+* 暂停开始 ![](https://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/rest.png)![](https://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/pause.png)![](https://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/finish.png)
+* 个人中心 ![](https://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/selfCenter.png)
+* 设置 ![](https://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/setting.png)
 
 ### 页面展示: (开始、暂停、继续、退出)
 
-![](://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/Demonstrate.gif)
+![](https://github.com/Sunyandong-CS/FocusTime/raw/master/ScreenShot/Demonstrate.gif)
