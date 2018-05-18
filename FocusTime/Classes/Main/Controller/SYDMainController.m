@@ -56,6 +56,8 @@
 @property (nonatomic, weak) UIImageView *logoView;
 /* 倒计时显示的View */
 @property (nonatomic, weak) SYDTimeCountDownView *timeV;
+/* secounds label */
+@property (nonatomic, weak) UILabel *secoundsLabel;
 /* circleAnimation */
 @property (nonatomic, weak) CircleAnimation *cirAnimation;
 /* 番茄总计时长 */
@@ -242,9 +244,20 @@
     self.timeV = timeView;
     timeView.alpha = 0;
     [self.view addSubview:timeView];
+    
+    // 添加秒的计时区域
+    UILabel *secoundsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenW * 0.3, ScreenW * 0.3)];
+    secoundsLabel.centerX = self.view.centerX;
+    secoundsLabel.centerY = self.view.centerY * 0.9;
+    self.secoundsLabel = secoundsLabel;
+    [self.view addSubview:secoundsLabel];
+    secoundsLabel.backgroundColor = [UIColor clearColor];
+    secoundsLabel.textColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.6];
+    secoundsLabel.font = [UIFont fontWithName:@"SFUIDisplay-Thin" size:32];
+    secoundsLabel.textAlignment = NSTextAlignmentCenter;
+    secoundsLabel.alpha = 0;
+    
     [self refreshCountdownLabel];
-    
-    
 }
 
 /**
@@ -331,15 +344,23 @@
         //弹出休息页面  present一个新的控制器比较好
         
     }else{
-        
-        NSInteger minutes = self.totalTime / 60;
+        NSInteger hours = self.totalTime / 3600;
+        NSInteger minutes = (self.totalTime - hours * 3600) / 60;
         NSInteger seconds = self.totalTime % 60;
         
         //设置界面的按钮显示 根据自己需求设置
-        self.timeV.minuteLabel.text = [NSString stringWithFormat:@"%.2ld",(long)minutes];
-        self.timeV.middleLabel.text = @":";
-        self.timeV.secondLabel.text = [NSString stringWithFormat:@"%.2ld",(long)seconds];
-        
+        if (hours > 0) {
+            self.secoundsLabel.alpha = 1;
+            self.timeV.minuteLabel.text = [NSString stringWithFormat:@"%.2ld",(long)hours];
+            self.timeV.middleLabel.text = @":";
+            self.timeV.secondLabel.text = [NSString stringWithFormat:@"%.2ld",(long)minutes];
+            self.secoundsLabel.text = [NSString stringWithFormat:@"%.2ld",(long)seconds];
+        } else {
+            self.secoundsLabel.alpha = 0;
+            self.timeV.minuteLabel.text = [NSString stringWithFormat:@"%.2ld",(long)minutes];
+            self.timeV.middleLabel.text = @":";
+            self.timeV.secondLabel.text = [NSString stringWithFormat:@"%.2ld",(long)seconds];
+        }
         self.currentTime ++;
         self.totalTime --;
     }
@@ -378,9 +399,19 @@
     [self initializeCountTime];
     
     [self hideTopBtn];
-    self.logoView.hidden = YES;
-    self.timeV.alpha = 1;
-    self.circleV.alpha = 1;
+    // 动画翻转
+    [UIView transitionWithView:self.logoView duration:0.8 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
+        self.logoView.alpha = 0;
+    } completion:nil];
+    
+    [UIView transitionWithView:self.timeV duration:0.8 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
+        self.timeV.alpha = 1;
+    } completion:^(BOOL finished) {
+        self.circleV.alpha = 1;
+    }];
+    
+//    self.logoView.hidden = YES;
+//    self.timeV.alpha = 1;
     
     
     // 开始倒计时动画 3 。2 。1
@@ -391,10 +422,10 @@
 //    countdownlabel.textColor = [UIColor whiteColor];
 //    countdownlabel.font = [UIFont systemFontOfSize:30];
 //    [self.view addSubview:countdownlabel];
-    
-    self.circleV.alpha = 0;
-    self.timeV.alpha = 0;
-    self.startBtn.alpha = 0;
+//
+//    self.circleV.alpha = 0;
+//    self.timeV.alpha = 0;
+//    self.startBtn.alpha = 0;
     
 //    [countdownlabel startCount];
     
@@ -486,17 +517,20 @@
         self.exitBtn.centerX -= animationW;
         self.exitBtn.alpha = 0.0;
         self.startBtn.alpha = 1;
+        
 //        [self resumeRestTimer]; // 处于suspend状态下的timer无法被释放
 //        dispatch_source_cancel(_restTimer);
     } completion:^(BOOL finished) {
         
         self.logoView.hidden = NO;
+        self.logoView.alpha = 1;
         self.timeV.alpha = 0;
         self.circleV.alpha = 0;
         
         // stop timer ,时钟归位
         [self stopTimer];
         [self refreshCountdownLabel];
+        self.secoundsLabel.alpha = 0;
         [self.cirAnimation removeFromSuperview];
         [self showTopBtn];
         

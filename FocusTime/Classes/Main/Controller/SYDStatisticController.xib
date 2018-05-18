@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SYDStatisticController">
             <connections>
+                <outlet property="ensureBtn" destination="b6B-sV-dSt" id="FkN-sS-0A7"/>
                 <outlet property="navBar" destination="J3k-km-VKi" id="uRT-nV-qH0"/>
                 <outlet property="restTimeLabel" destination="l6c-an-rpd" id="sNU-kQ-CNE"/>
                 <outlet property="scheduleTimeLabel" destination="fX9-fQ-P5V" id="Dbw-sL-ikK"/>
@@ -56,24 +57,24 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本次学习时长：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DyX-Jc-Ta5">
-                            <rect key="frame" x="8" y="33" width="122" height="21"/>
+                            <rect key="frame" x="8" y="47" width="122" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="CQI-tt-Xi8"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="休息时长：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6c-an-rpd">
-                            <rect key="frame" x="8" y="85" width="87" height="21"/>
+                            <rect key="frame" x="8" y="99" width="87" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设定学习时长：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fX9-fQ-P5V">
-                            <rect key="frame" x="8" y="59" width="122" height="21"/>
+                            <rect key="frame" x="8" y="73" width="122" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -81,7 +82,7 @@
                         <constraint firstItem="fX9-fQ-P5V" firstAttribute="top" secondItem="DyX-Jc-Ta5" secondAttribute="bottom" constant="5" id="1BH-PF-kjk"/>
                         <constraint firstItem="fX9-fQ-P5V" firstAttribute="leading" secondItem="bfX-j7-bXn" secondAttribute="leading" constant="8" id="6D4-A6-A0d"/>
                         <constraint firstItem="l6c-an-rpd" firstAttribute="top" secondItem="fX9-fQ-P5V" secondAttribute="bottom" constant="5" id="8LB-Ye-kKZ"/>
-                        <constraint firstItem="DyX-Jc-Ta5" firstAttribute="top" secondItem="FvM-mJ-Alx" secondAttribute="bottom" constant="4" id="EBw-cy-bAH"/>
+                        <constraint firstItem="DyX-Jc-Ta5" firstAttribute="top" secondItem="FvM-mJ-Alx" secondAttribute="bottom" constant="18" id="EBw-cy-bAH"/>
                         <constraint firstItem="FvM-mJ-Alx" firstAttribute="top" secondItem="bfX-j7-bXn" secondAttribute="top" constant="8" id="O6Q-9h-1sy"/>
                         <constraint firstItem="DyX-Jc-Ta5" firstAttribute="leading" secondItem="bfX-j7-bXn" secondAttribute="leading" constant="8" id="a4e-fv-TCV"/>
                         <constraint firstAttribute="height" constant="150" id="b9H-Tt-QCQ"/>

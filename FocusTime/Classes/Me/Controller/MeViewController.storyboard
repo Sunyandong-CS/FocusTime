@@ -161,8 +161,12 @@
                                 <action selector="back:" destination="NYF-di-g5s" id="cAd-wG-83p"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="setting_time" id="zHU-DX-O3S">
+                        <barButtonItem key="rightBarButtonItem" image="setting_time" style="plain" id="zHU-DX-O3S">
+                            <inset key="imageInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="yjG-uG-jbl" kind="push" id="Sq1-aY-4F9"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -174,12 +178,39 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMF-5Z-v3C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1394.4000000000001" y="-1420.8395802098951"/>
+            <point key="canvasLocation" x="-1239" y="-1431"/>
+        </scene>
+        <!--History Statistic View Controller-->
+        <scene sceneID="Zw0-zb-lBB">
+            <objects>
+                <viewController id="yjG-uG-jbl" customClass="SYDHistoryStatisticViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y5h-LD-6ID">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_img" translatesAutoresizingMaskIntoConstraints="NO" id="8C9-vy-whQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8C9-vy-whQ" firstAttribute="bottom" secondItem="Dya-6g-0FD" secondAttribute="bottom" id="Gce-zp-mqH"/>
+                            <constraint firstItem="8C9-vy-whQ" firstAttribute="top" secondItem="Y5h-LD-6ID" secondAttribute="top" id="Hec-rb-9kw"/>
+                            <constraint firstItem="8C9-vy-whQ" firstAttribute="trailing" secondItem="Dya-6g-0FD" secondAttribute="trailing" id="Qo2-Wy-hbs"/>
+                            <constraint firstItem="8C9-vy-whQ" firstAttribute="leading" secondItem="Dya-6g-0FD" secondAttribute="leading" id="iv7-rY-igz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Dya-6g-0FD"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JkB-No-xmX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l3c-s9-0Tp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-226.40000000000001" y="-1431.6341829085459"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OWF-gg-8Zj">
             <objects>
-                <navigationController id="Tu7-Hp-uH6" sceneMemberID="viewController">
+                <navigationController id="Tu7-Hp-uH6" customClass="SYDNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ypI-UZ-ZrB">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

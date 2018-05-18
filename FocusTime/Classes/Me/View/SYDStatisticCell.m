@@ -40,11 +40,14 @@
 }
 
 - (void)setIsShowDate:(Boolean)isShowDate {
+
     _isShowDate = isShowDate;
-    if (!_isShowDate) {
-        //        _dateLabel.frame = CGRectZero;
-        _dateLabel.hidden = YES;
+    _dateLabel.hidden = isShowDate == NO;
+    if (!_isShowDate && _bgViewTop.constant > 15) {
         _bgViewTop.constant -= 15;
+    }
+    if (_isShowDate && _bgViewTop.constant < 15) {
+        _bgViewTop.constant += 15;
     }
 }
 - (void)layoutSubviews {
@@ -65,7 +68,6 @@
     _timeLabel.text = focusModel.finishTime;
     _totalFocusTime.text = focusModel.setTime ;
     _setTimeLabel.text = [NSString stringWithFormat:@"设定时长: %@",focusModel.setTime];
-    
     _restTimeLabel.text = [NSString stringWithFormat:@"休息时间: %@",focusModel.restTime];
     
 }

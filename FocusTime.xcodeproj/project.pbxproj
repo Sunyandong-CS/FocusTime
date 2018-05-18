@@ -21,6 +21,8 @@
 		CF951775206B360100CE221D /* CircleAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CF951774206B360100CE221D /* CircleAnimation.m */; };
 		CF95177A206BCA6E00CE221D /* SYDNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = CF951779206BCA6E00CE221D /* SYDNotification.m */; };
 		CF9CC4E720AB1F9C007D3F37 /* SYDTimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9CC4E620AB1F9C007D3F37 /* SYDTimeFormatter.m */; };
+		CF9EC43F20AF0DED004431B2 /* SYDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9EC43E20AF0DED004431B2 /* SYDNavigationController.m */; };
+		CF9EC44220AF119C004431B2 /* UIBarButtonItem+item.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9EC44020AF119C004431B2 /* UIBarButtonItem+item.m */; };
 		CFA19A9D2066974B005883F5 /* SYDSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA19A9C2066974B005883F5 /* SYDSettingViewController.m */; };
 		CFA19A9F20669A03005883F5 /* SYDSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFA19A9E20669A03005883F5 /* SYDSettingViewController.storyboard */; };
 		CFB3B51D205B9B2D00372E78 /* SYDCircleView.h in Sources */ = {isa = PBXBuildFile; fileRef = CFEB05BA205A52650078A2E9 /* SYDCircleView.h */; };
@@ -87,6 +89,10 @@
 		CF951779206BCA6E00CE221D /* SYDNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDNotification.m; sourceTree = "<group>"; };
 		CF9CC4E520AB1F9C007D3F37 /* SYDTimeFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDTimeFormatter.h; sourceTree = "<group>"; };
 		CF9CC4E620AB1F9C007D3F37 /* SYDTimeFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDTimeFormatter.m; sourceTree = "<group>"; };
+		CF9EC43D20AF0DED004431B2 /* SYDNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDNavigationController.h; sourceTree = "<group>"; };
+		CF9EC43E20AF0DED004431B2 /* SYDNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDNavigationController.m; sourceTree = "<group>"; };
+		CF9EC44020AF119C004431B2 /* UIBarButtonItem+item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+item.m"; sourceTree = "<group>"; };
+		CF9EC44120AF119C004431B2 /* UIBarButtonItem+item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+item.h"; sourceTree = "<group>"; };
 		CFA19A9B2066974B005883F5 /* SYDSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYDSettingViewController.h; sourceTree = "<group>"; };
 		CFA19A9C2066974B005883F5 /* SYDSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SYDSettingViewController.m; sourceTree = "<group>"; };
 		CFA19A9E20669A03005883F5 /* SYDSettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SYDSettingViewController.storyboard; sourceTree = "<group>"; };
@@ -164,6 +170,7 @@
 		CF951776206BCA0500CE221D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CF9EC43C20AF0DCD004431B2 /* Controller */,
 				CF951777206BCA3600CE221D /* View */,
 			);
 			path = Common;
@@ -174,6 +181,15 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CF9EC43C20AF0DCD004431B2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CF9EC43D20AF0DED004431B2 /* SYDNavigationController.h */,
+				CF9EC43E20AF0DED004431B2 /* SYDNavigationController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		CFCBE6282059624A00714D2B = {
@@ -266,6 +282,8 @@
 		CFCBE66A205963D800714D2B /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				CF9EC44120AF119C004431B2 /* UIBarButtonItem+item.h */,
+				CF9EC44020AF119C004431B2 /* UIBarButtonItem+item.m */,
 				CFCBE68F2059673F00714D2B /* UIView+SYDFrame.h */,
 				CFCBE6902059673F00714D2B /* UIView+SYDFrame.m */,
 			);
@@ -626,6 +644,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF9EC43F20AF0DED004431B2 /* SYDNavigationController.m in Sources */,
 				CF60626220AC2C5C00D6AF06 /* SYDHistoryStatisticViewController.m in Sources */,
 				CF9CC4E720AB1F9C007D3F37 /* SYDTimeFormatter.m in Sources */,
 				CF6859C12070EFCF005DE0B5 /* CircleAnimation.h in Sources */,
@@ -648,6 +667,7 @@
 				CFEB05BC205A52650078A2E9 /* SYDCircleView.m in Sources */,
 				CF02D3EF208E0E5100A67604 /* MeViewController.m in Sources */,
 				CF32F64420AD668000A3B938 /* SYDThemeCell.m in Sources */,
+				CF9EC44220AF119C004431B2 /* UIBarButtonItem+item.m in Sources */,
 				CF02D3EC208DD85400A67604 /* SYDUserDefaultsTools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

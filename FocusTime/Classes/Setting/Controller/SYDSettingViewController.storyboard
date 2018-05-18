@@ -178,7 +178,7 @@
         <!--Navigation Controller-->
         <scene sceneID="jHh-1f-4FK">
             <objects>
-                <navigationController id="1P1-nD-REF" sceneMemberID="viewController">
+                <navigationController id="1P1-nD-REF" customClass="SYDNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rSm-Lc-wwZ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -30,7 +30,7 @@ static NSString * const SYDThemeCellId = @"SYDThemeCellId";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setNeedsNavigationBackground:0.0];
+//    [self setNeedsNavigationBackground:0.0];
     self.navigationItem.title = @"选择主题";
     [self setUpbackgroundView];
     [self setUpCollectionView];
@@ -129,23 +129,5 @@ static NSString * const SYDThemeCellId = @"SYDThemeCellId";
 }
 */
 
-- (void)setNeedsNavigationBackground:(CGFloat)alpha {
-    // 导航栏背景透明度设置
-    UIView *barBackgroundView = [[self.navigationController.navigationBar subviews] objectAtIndex:0];// _UIBarBackground
-    UIImageView *backgroundImageView = [[barBackgroundView subviews] objectAtIndex:0];// UIImageView
-    if (self.navigationController.navigationBar.isTranslucent) {
-        if (backgroundImageView != nil && backgroundImageView.image != nil) {
-            barBackgroundView.alpha = alpha;
-        } else {
-            UIView *backgroundEffectView = [[barBackgroundView subviews] objectAtIndex:1];// UIVisualEffectView
-            if (backgroundEffectView != nil) {
-                backgroundEffectView.alpha = alpha;
-            }
-        }
-    } else {
-        barBackgroundView.alpha = alpha;
-    }
-    self.navigationController.navigationBar.clipsToBounds = alpha == 0.0;
-}
 
 @end

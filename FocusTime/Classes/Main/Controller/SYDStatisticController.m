@@ -14,7 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *studyTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scheduleTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *restTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *errorTimeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *ensureBtn;
+
 @end
 
 @implementation SYDStatisticController
@@ -36,23 +37,23 @@
         NSInteger hours = _studyTime / 3600;
         NSInteger minutes = (_studyTime % 3600) / 60;
         NSInteger secounds = (_studyTime % 60);
-        _studyTimeLabel.text = [NSString stringWithFormat:@"本次学习时长: %i:%i:%i",hours,minutes,secounds];
+        _studyTimeLabel.text = [NSString stringWithFormat:@"本次学习时长: %.2li:%.2li:%li",(long)hours,(long)minutes,(long)secounds];
     } else {
         NSInteger minutes = _studyTime / 60;
         NSInteger secounds = _studyTime % 60;
-        _studyTimeLabel.text = [NSString stringWithFormat:@"本次学习时长:%i 分%i 秒",minutes,secounds];
+        _studyTimeLabel.text = [NSString stringWithFormat:@"本次学习时长:%.2li 分%.2li 秒",(long)minutes,(long)secounds];
     }
     if (_scheduleTime / 3600 > 0) {
         NSInteger hours = _scheduleTime / 3600;
         NSInteger minutes = (_scheduleTime % 3600) / 60;
         NSInteger secounds = (_scheduleTime % 60);
-        _scheduleTimeLabel.text = [NSString stringWithFormat:@"设定学习时长:%i:%i:%i",hours,minutes,secounds];
+        _scheduleTimeLabel.text = [NSString stringWithFormat:@"设定学习时长:%.2li:%.2li:%li",(long)hours,(long)minutes,(long)secounds];
     } else {
         NSInteger minutes = _scheduleTime / 60;
         NSInteger secounds = _scheduleTime % 60;
-        _scheduleTimeLabel.text = [NSString stringWithFormat:@"设定学习时长:%i 分%i 秒",minutes,secounds];
+        _scheduleTimeLabel.text = [NSString stringWithFormat:@"设定学习时长:%.2li 分%.2li 秒",(long)minutes,(long)secounds];
     }
-    _restTimeLabel.text = [NSString stringWithFormat:@"本次休息时长%@",_restTime];
+    _restTimeLabel.text = [NSString stringWithFormat:@"本次休息时长:%@",_restTime];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,8 +64,11 @@
 - (void)initializeView {
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-//    [self.navBar setBarTintColor:[UIColor colorWithRed:60.0 / 255.0 green:31.0 / 255.0 blue:174.0 / 255.0 alpha:1]];
-//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:60.0 / 255.0 green:31.0 / 255.0 blue:174.0 / 255.0 alpha:1];
+    _ensureBtn.layer.cornerRadius = 4;
+    _ensureBtn.layer.masksToBounds = YES;
+    
+    // 设置背景图片
+    
 }
 
 @end
